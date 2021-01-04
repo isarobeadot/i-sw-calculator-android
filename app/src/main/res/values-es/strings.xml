@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ISW Calculadora</string>
+    <string name="clear">Limpiar</string>
+    <string name="quit">Salir</string>
+    <string name="ans">Resp.</string>
+    <string name="dot">.</string>
+    <string name="about">Acerca de…</string>
+    <string name="version">Versión</string>
+    <string name="developer">Developed by Iñaki SoftWare</string>
+    <string name="copy_ans">Copiar respuesta</string>
+    <string name="ans_copied">Respuesta copiada al portapapeles</string>
+</resources>

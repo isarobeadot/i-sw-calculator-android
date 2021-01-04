@@ -1,0 +1,15 @@
+<resources>
+    <!-- Main Activity -->
+    <dimen name="button_control_text_size">24sp</dimen>
+    <dimen name="button_number_height">100dp</dimen>
+    <dimen name="button_number_text_size">32sp</dimen>
+    <dimen name="layout_control_height">65dp</dimen>
+    <dimen name="text_view_op_width">50dp</dimen>
+    <dimen name="text_view_padding">15dp</dimen>
+    <dimen name="text_view_text_size">32sp</dimen>
+
+    <!-- About Activity -->
+    <dimen name="about_app">24sp</dimen>
+    <dimen name="about_developer">28sp</dimen>
+    <dimen name="about_icon_size">144dp</dimen>
+</resources>

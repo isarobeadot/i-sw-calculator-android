@@ -1,0 +1,18 @@
+<resources>
+    <!-- Main Activity -->
+    <dimen name="activity_horizontal_margin">6dp</dimen>
+    <dimen name="activity_vertical_margin">6dp</dimen>
+    <dimen name="button_control_text_size">18sp</dimen>
+    <dimen name="button_margin">0.5dp</dimen>
+    <dimen name="button_number_height">70dp</dimen>
+    <dimen name="button_number_text_size">26sp</dimen>
+    <dimen name="layout_control_height">50dp</dimen>
+    <dimen name="text_view_op_width">30dp</dimen>
+    <dimen name="text_view_padding">10dp</dimen>
+    <dimen name="text_view_text_size">24sp</dimen>
+
+    <!-- About Activity -->
+    <dimen name="about_app">18sp</dimen>
+    <dimen name="about_developer">16sp</dimen>
+    <dimen name="about_icon_size">96dp</dimen>
+</resources>

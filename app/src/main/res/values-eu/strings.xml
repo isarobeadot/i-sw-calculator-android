@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ISW Kalkulagailua</string>
+    <string name="clear">Garbitu</string>
+    <string name="quit">Irten</string>
+    <string name="ans">Erantz.</string>
+    <string name="dot">.</string>
+    <string name="about">Honi buruz…</string>
+    <string name="version">Bertsioa</string>
+    <string name="developer">Developed by Iñaki SoftWare</string>
+    <string name="copy_ans">Erantzuna kopiatu</string>
+    <string name="ans_copied">Erantzuna arbelera kopiatu da</string>
+</resources>

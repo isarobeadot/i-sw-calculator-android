@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">ISW Calculator</string>
+    <string name="quit">Quit</string>
+    <string name="ans">Ans</string>
+    <string name="clear">Clear</string>
+    <string name="dot">.</string>
+    <string name="equal" translatable="false">=</string>
+    <string name="add" translatable="false">+</string>
+    <string name="subtract" translatable="false">−</string>
+    <string name="multiply" translatable="false">x</string>
+    <string name="divide" translatable="false">/</string>
+    <string name="pow" translatable="false">^</string>
+    <string name="plus_minus" translatable="false">+/-</string>
+    <string name="b0" translatable="false">0</string>
+    <string name="b1" translatable="false">1</string>
+    <string name="b2" translatable="false">2</string>
+    <string name="b3" translatable="false">3</string>
+    <string name="b4" translatable="false">4</string>
+    <string name="b5" translatable="false">5</string>
+    <string name="b6" translatable="false">6</string>
+    <string name="b7" translatable="false">7</string>
+    <string name="b8" translatable="false">8</string>
+    <string name="b9" translatable="false">9</string>
+    <string name="TextView" translatable="false">TextView</string>
+    <string name="about">About…</string>
+    <string name="version">Version</string>
+    <string name="developer">Developed by Iñaki SoftWare</string>
+    <string name="copy_ans">Copy answer</string>
+    <string name="ans_copied">Answer copied to clipboard</string>
+</resources>
