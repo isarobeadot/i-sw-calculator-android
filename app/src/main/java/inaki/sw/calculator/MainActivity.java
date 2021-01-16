@@ -85,6 +85,11 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+        _quit();
+    }
+
     private void initialize() {
         b0 = findViewById(R.id.b0);
         b1 = findViewById(R.id.b1);
