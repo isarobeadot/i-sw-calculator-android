@@ -49,6 +49,8 @@ captures/
 .idea/modules.xml
 # Comment next line if keeping position of elements in Navigation Editor is relevant for you
 .idea/navEditor.xml
+# Version control
+.idea/vcs.xml
 
 # Keystore files
 # Uncomment the following lines if you do not want to check your keystore files in.
@@ -75,7 +77,7 @@ fastlane/test_output
 fastlane/readme.md
 
 # Version control
-*vcs.xml
+vcs.xml
 
 # lint
 lint/intermediates/
