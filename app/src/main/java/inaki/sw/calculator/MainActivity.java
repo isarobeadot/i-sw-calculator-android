@@ -199,6 +199,7 @@ public class MainActivity extends AppCompatActivity {
             _hapticFeedback();
             _backSpace();
         });
+        bBackSpace.setOnLongClickListener(v -> _backSpaceLong());
         bODivide.setOnClickListener(v -> {
             _hapticFeedback();
             _operand(getString(R.string.divide));
@@ -211,7 +212,8 @@ public class MainActivity extends AppCompatActivity {
             _hapticFeedback();
             _plusMinus();
         });
-        bOPow.setOnClickListener(v -> {_hapticFeedback();
+        bOPow.setOnClickListener(v -> {
+            _hapticFeedback();
             _operand(getString(R.string.pow));
         });
         bOSubtract.setOnClickListener(v -> {
@@ -247,6 +249,16 @@ public class MainActivity extends AppCompatActivity {
             main.setText(_main.substring(0, _main.length() - 1));
         }
         _updatePreferences();
+    }
+
+    private boolean _backSpaceLong() {
+        String _main = main.getText().toString();
+        if (_main.equals(getString(R.string.b0))) {
+            return false;
+        }
+        main.setText(getString(R.string.b0));
+        _updatePreferences();
+        return true;
     }
 
     private void _clear() {
@@ -377,7 +389,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void _hapticFeedback() {
-        long milliseconds = 5;
+        long milliseconds = 10;
         if (Build.VERSION.SDK_INT >= 26) {
             vibrator.vibrate(VibrationEffect.createOneShot(milliseconds, VibrationEffect.DEFAULT_AMPLITUDE));
         } else {

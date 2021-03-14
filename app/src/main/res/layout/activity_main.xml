@@ -5,7 +5,6 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/activity_vertical_margin"
     tools:context=".MainActivity">
 
     <RelativeLayout
@@ -35,7 +34,6 @@
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="@dimen/button_margin"
                 android:layout_weight="1"
                 android:background="@color/colorActionButtonBackground"
                 android:text="@string/quit"
@@ -47,7 +45,6 @@
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="@dimen/button_margin"
                 android:layout_weight="1"
                 android:background="@color/colorActionButtonBackground"
                 android:text="@string/ans"
@@ -59,7 +56,6 @@
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="@dimen/button_margin"
                 android:layout_weight="1"
                 android:background="@color/colorActionButtonBackground"
                 android:text="@string/clear"
@@ -73,7 +69,9 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/footer"
         android:layout_below="@+id/header"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        android:paddingHorizontal="@dimen/activity_horizontal_margin"
+        android:paddingVertical="@dimen/activity_vertical_margin">
 
         <LinearLayout
             android:layout_width="match_parent"
