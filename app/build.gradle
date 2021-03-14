@@ -9,8 +9,8 @@ android {
         applicationId "inaki.sw.calculator"
         minSdkVersion 15
         targetSdkVersion 30
-        versionCode 20210116
-        versionName '2.0.6'
+        versionCode 20210314
+        versionName '2.0.7'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -40,7 +40,7 @@ android {
 
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }

@@ -5,7 +5,10 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -38,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView op;
     private TextView main;
     private SharedPreferences preferences;
+    private Vibrator vibrator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,31 +126,98 @@ public class MainActivity extends AppCompatActivity {
         bAAns.setEnabled(false);
         // Power
         bOPow.setText(Html.fromHtml("x<sup><small>y</small></sup>"));
+        // Vibrator
+        vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
     }
 
     private void addListeners() {
-        b0.setOnClickListener(v -> _number(getString(R.string.b0)));
-        b1.setOnClickListener(v -> _number(getString(R.string.b1)));
-        b2.setOnClickListener(v -> _number(getString(R.string.b2)));
-        b3.setOnClickListener(v -> _number(getString(R.string.b3)));
-        b4.setOnClickListener(v -> _number(getString(R.string.b4)));
-        b5.setOnClickListener(v -> _number(getString(R.string.b5)));
-        b6.setOnClickListener(v -> _number(getString(R.string.b6)));
-        b7.setOnClickListener(v -> _number(getString(R.string.b7)));
-        b8.setOnClickListener(v -> _number(getString(R.string.b8)));
-        b9.setOnClickListener(v -> _number(getString(R.string.b9)));
-        bAAns.setOnClickListener(v -> _ans());
-        bAClear.setOnClickListener(v -> _clear());
-        bAQuit.setOnClickListener(v -> _quit());
-        bDot.setOnClickListener(v -> _dot());
-        bEqual.setOnClickListener(v -> _equal());
-        bOAdd.setOnClickListener(v -> _operand(getString(R.string.add)));
-        bBackSpace.setOnClickListener(v -> _backSpace());
-        bODivide.setOnClickListener(v -> _operand(getString(R.string.divide)));
-        bOMultiply.setOnClickListener(v -> _operand(getString(R.string.multiply)));
-        bOPlusMinus.setOnClickListener(v -> _plusMinus());
-        bOPow.setOnClickListener(v -> _operand(getString(R.string.pow)));
-        bOSubtract.setOnClickListener(v -> _operand(getString(R.string.subtract)));
+        b0.setOnClickListener(v -> {
+            _hapticFeedback();
+            _number(getString(R.string.b0));
+        });
+        b1.setOnClickListener(v -> {
+            _hapticFeedback();
+            _number(getString(R.string.b1));
+        });
+        b2.setOnClickListener(v -> {
+            _hapticFeedback();
+            _number(getString(R.string.b2));
+        });
+        b3.setOnClickListener(v -> {
+            _hapticFeedback();
+            _number(getString(R.string.b3));
+        });
+        b4.setOnClickListener(v -> {
+            _hapticFeedback();
+            _number(getString(R.string.b4));
+        });
+        b5.setOnClickListener(v -> {
+            _hapticFeedback();
+            _number(getString(R.string.b5));
+        });
+        b6.setOnClickListener(v -> {
+            _hapticFeedback();
+            _number(getString(R.string.b6));
+        });
+        b7.setOnClickListener(v -> {
+            _hapticFeedback();
+            _number(getString(R.string.b7));
+        });
+        b8.setOnClickListener(v -> {
+            _hapticFeedback();
+            _number(getString(R.string.b8));
+        });
+        b9.setOnClickListener(v -> {
+            _hapticFeedback();
+            _number(getString(R.string.b9));
+        });
+        bAAns.setOnClickListener(v -> {
+            _hapticFeedback();
+            _ans();
+        });
+        bAClear.setOnClickListener(v -> {
+            _hapticFeedback();
+            _clear();
+        });
+        bAQuit.setOnClickListener(v -> {
+            _hapticFeedback();
+            _quit();
+        });
+        bDot.setOnClickListener(v -> {
+            _hapticFeedback();
+            _dot();
+        });
+        bEqual.setOnClickListener(v -> {
+            _hapticFeedback();
+            _equal();
+        });
+        bOAdd.setOnClickListener(v -> {
+            _hapticFeedback();
+            _operand(getString(R.string.add));
+        });
+        bBackSpace.setOnClickListener(v -> {
+            _hapticFeedback();
+            _backSpace();
+        });
+        bODivide.setOnClickListener(v -> {
+            _hapticFeedback();
+            _operand(getString(R.string.divide));
+        });
+        bOMultiply.setOnClickListener(v -> {
+            _hapticFeedback();
+            _operand(getString(R.string.multiply));
+        });
+        bOPlusMinus.setOnClickListener(v -> {
+            _hapticFeedback();
+            _plusMinus();
+        });
+        bOPow.setOnClickListener(v -> {_hapticFeedback();
+            _operand(getString(R.string.pow));
+        });
+        bOSubtract.setOnClickListener(v -> {
+            _hapticFeedback();
+            _operand(getString(R.string.subtract));
+        });
     }
 
     private void _ans() {
@@ -303,5 +374,14 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("main", main.getText().toString());
         editor.putBoolean("equalPressed", equalPressed);
         editor.apply();
+    }
+
+    private void _hapticFeedback() {
+        long milliseconds = 5;
+        if (Build.VERSION.SDK_INT >= 26) {
+            vibrator.vibrate(VibrationEffect.createOneShot(milliseconds, VibrationEffect.DEFAULT_AMPLITUDE));
+        } else {
+            vibrator.vibrate(milliseconds);
+        }
     }
 }
