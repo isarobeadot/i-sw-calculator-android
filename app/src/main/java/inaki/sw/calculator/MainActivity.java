@@ -36,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
     private Button bOAdd, bODivide, bOMultiply, bOPlusMinus, bOPow, bOSubtract;
     private final Locale locale = Locale.getDefault();
     private final String decimal_separator = String.format(locale, "%f", 0.0).replace("0", "");
-    private final DecimalFormat decimalFormat = new DecimalFormat("#.####################");
+    private final DecimalFormat decimalFormat = new DecimalFormat("#0.####################");
+    private final DecimalFormat scientificFormat = new DecimalFormat("#0.0#################E0");
     private TextView top;
     private TextView op;
     private TextView main;
@@ -223,7 +224,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void _ans() {
-        top.setText(decimalFormat.format(ans));
+        _parseAnswerToTop();
         equalPressed = true;
         _updatePreferences();
     }
@@ -317,15 +318,23 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
             _clear();
-            top.setText(decimalFormat.format(ans));
+            _parseAnswerToTop();
             // Enable answer button
             bAAns.setEnabled(true);
         } catch (ParseException pe) {
             _clear();
-            top.setText(decimalFormat.format(ans));
+            _parseAnswerToTop();
         }
         equalPressed = true;
         _updatePreferences();
+    }
+
+    private void _parseAnswerToTop() {
+        if (Double.toString(ans).contains("E")) {
+            top.setText(scientificFormat.format(ans));
+        } else {
+            top.setText(decimalFormat.format(ans));
+        }
     }
 
     private void _loadPreferences() {
