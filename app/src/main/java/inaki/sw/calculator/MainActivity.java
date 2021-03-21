@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private final Locale locale = Locale.getDefault();
     private final String decimal_separator = String.format(locale, "%f", 0.0).replace("0", "");
     private final DecimalFormat decimalFormat = new DecimalFormat("#0.####################");
-    private final DecimalFormat scientificFormat = new DecimalFormat("#0.0#################E0");
+    private final DecimalFormat scientificFormat = new DecimalFormat("0.0#################E0");
     private TextView top;
     private TextView op;
     private TextView main;
@@ -243,6 +243,7 @@ public class MainActivity extends AppCompatActivity {
                 main.setText(_top);
             } else {
                 main.setText(getString(R.string.b0));
+                equalPressed = !top.getText().toString().isEmpty();
             }
         }
         _main = main.getText().toString();
