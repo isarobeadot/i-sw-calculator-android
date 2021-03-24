@@ -28,7 +28,7 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity {
 
     private boolean equalPressed = false;
-    private double ans = 0;
+    private double ans = 0D;
     private Button b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, bDot;
     private Button bAAns, bAClear, bAQuit;
     private ImageButton bBackSpace;
@@ -344,6 +344,10 @@ public class MainActivity extends AppCompatActivity {
         op.setText(preferences.getString("op", ""));
         main.setText(preferences.getString("main", getString(R.string.b0)));
         equalPressed = preferences.getBoolean("equalPressed", false);
+        ans = Double.longBitsToDouble(preferences.getLong("ans", Double.doubleToLongBits(0D)));
+        if (ans != 0D) {
+            bAAns.setEnabled(true);
+        }
     }
 
     private void _number(String s) {
@@ -395,6 +399,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("op", op.getText().toString());
         editor.putString("main", main.getText().toString());
         editor.putBoolean("equalPressed", equalPressed);
+        editor.putLong("ans", Double.doubleToRawLongBits(ans));
         editor.apply();
     }
 
