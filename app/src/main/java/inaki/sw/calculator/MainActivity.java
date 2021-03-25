@@ -31,8 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private double ans = 0D;
     private Button b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, bDot;
     private Button bAAns, bAClear, bAQuit;
-    private ImageButton bBackSpace;
-    private Button bEqual;
+    private Button bBackSpace, bEqual;
     private Button bOAdd, bODivide, bOMultiply, bOPlusMinus, bOPow, bOSubtract;
     private final Locale locale = Locale.getDefault();
     private final String decimal_separator = String.format(locale, "%f", 0.0).replace("0", "");
@@ -127,6 +126,8 @@ public class MainActivity extends AppCompatActivity {
         bAAns.setEnabled(false);
         // Power
         bOPow.setText(Html.fromHtml("x<sup><small>y</small></sup>"));
+        // Backspace
+        bBackSpace.setText(Html.fromHtml("<small>&#10094;</small>"));
         // Vibrator
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
     }

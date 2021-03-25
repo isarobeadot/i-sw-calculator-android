@@ -4,6 +4,7 @@
     <string name="ans">Ans</string>
     <string name="clear">Clear</string>
     <string name="dot">.</string>
+    <string name="backspace" translatable="false">C</string>
     <string name="equal" translatable="false">=</string>
     <string name="add" translatable="false">+</string>
     <string name="subtract" translatable="false">−</string>

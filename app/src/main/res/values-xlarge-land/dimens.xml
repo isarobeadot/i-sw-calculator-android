@@ -3,11 +3,11 @@
     <dimen name="activity_vertical_margin">6dp</dimen>
     <dimen name="button_control_text_size">20sp</dimen>
     <dimen name="button_margin">0.5dp</dimen>
-    <dimen name="button_number_height">90dp</dimen>
     <dimen name="button_number_text_size">32sp</dimen>
     <dimen name="layout_control_height">60dp</dimen>
     <dimen name="text_view_padding">12dp</dimen>
-    <dimen name="text_view_text_size">30sp</dimen>
+    <dimen name="text_view_main_text_size">36sp</dimen>
+    <dimen name="text_view_top_text_size">30sp</dimen>
 
     <!-- About Activity -->
 </resources>
