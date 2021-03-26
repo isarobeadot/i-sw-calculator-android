@@ -14,8 +14,8 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/layout_control_height"
         android:orientation="vertical"
-        android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
         android:weightSum="100"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -112,26 +112,27 @@
                 android:textSize="@dimen/button_number_text_size" />
 
             <Button
-                android:id="@+id/bOAdd"
+                android:id="@+id/bOPow"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/button_margin"
                 android:layout_weight="20"
                 android:background="@color/colorOperationButtonBackground"
-                android:text="@string/add"
+                android:text="@string/pow"
+                android:textAllCaps="false"
                 android:textColor="@color/colorOperationButtonText"
                 android:textSize="@dimen/button_number_text_size" />
 
             <Button
-                android:id="@+id/bOSubtract"
+                android:id="@+id/bOPlusMinus"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/button_margin"
                 android:layout_weight="20"
                 android:background="@color/colorOperationButtonBackground"
-                android:text="@string/subtract"
+                android:text="@string/plus_minus"
                 android:textColor="@color/colorOperationButtonText"
                 android:textSize="@dimen/button_number_text_size" />
         </LinearLayout>
@@ -249,27 +250,26 @@
                 android:textSize="@dimen/button_number_text_size" />
 
             <Button
-                android:id="@+id/bOPow"
+                android:id="@+id/bOAdd"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/button_margin"
                 android:layout_weight="20"
                 android:background="@color/colorOperationButtonBackground"
-                android:text="@string/pow"
-                android:textAllCaps="false"
+                android:text="@string/add"
                 android:textColor="@color/colorOperationButtonText"
                 android:textSize="@dimen/button_number_text_size" />
 
             <Button
-                android:id="@+id/bOPlusMinus"
+                android:id="@+id/bOSubtract"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/button_margin"
                 android:layout_weight="20"
                 android:background="@color/colorOperationButtonBackground"
-                android:text="@string/plus_minus"
+                android:text="@string/subtract"
                 android:textColor="@color/colorOperationButtonText"
                 android:textSize="@dimen/button_number_text_size" />
         </LinearLayout>
