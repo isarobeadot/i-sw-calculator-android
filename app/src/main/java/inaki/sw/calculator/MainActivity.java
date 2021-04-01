@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initialize();
         addListeners();
-        _loadPreferences();
     }
 
     @Override
@@ -94,6 +93,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initialize() {
+        // Load preferences
+        preferences = getSharedPreferences("values", Context.MODE_PRIVATE);
+        equalPressed = preferences.getBoolean("equalPressed", false);
+        ans = Double.longBitsToDouble(preferences.getLong("ans", Double.doubleToLongBits(0D)));
+        if (ans != 0D) {
+            bAAns.setEnabled(true);
+        }
+        // Buttons
         b0 = findViewById(R.id.b0);
         b1 = findViewById(R.id.b1);
         b2 = findViewById(R.id.b2);
@@ -117,8 +124,11 @@ public class MainActivity extends AppCompatActivity {
         bODivide = findViewById(R.id.bODivide);
         bOPow = findViewById(R.id.bOPow);
         top = findViewById(R.id.top);
+        top.setText(preferences.getString("top", ""));
         op = findViewById(R.id.op);
+        op.setText(preferences.getString("op", ""));
         main = findViewById(R.id.main);
+        main.setText(preferences.getString("main", getString(R.string.b0)));
         // Localize decimal separator
         bDot.setText(decimal_separator);
         // Answer button should be disabled at beginning
@@ -335,18 +345,6 @@ public class MainActivity extends AppCompatActivity {
             top.setText(scientificFormat.format(ans));
         } else {
             top.setText(decimalFormat.format(ans));
-        }
-    }
-
-    private void _loadPreferences() {
-        preferences = getSharedPreferences("values", Context.MODE_PRIVATE);
-        top.setText(preferences.getString("top", ""));
-        op.setText(preferences.getString("op", ""));
-        main.setText(preferences.getString("main", getString(R.string.b0)));
-        equalPressed = preferences.getBoolean("equalPressed", false);
-        ans = Double.longBitsToDouble(preferences.getLong("ans", Double.doubleToLongBits(0D)));
-        if (ans != 0D) {
-            bAAns.setEnabled(true);
         }
     }
 
