@@ -19,7 +19,7 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <Button
-            android:id="@+id/bAQuit"
+            android:id="@+id/quit"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -30,7 +30,7 @@
             android:textSize="@dimen/button_control_text_size" />
 
         <Button
-            android:id="@+id/bAAns"
+            android:id="@+id/ans"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -41,7 +41,7 @@
             android:textSize="@dimen/button_control_text_size" />
 
         <Button
-            android:id="@+id/bAClear"
+            android:id="@+id/clear"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
