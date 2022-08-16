@@ -97,9 +97,6 @@ public class MainActivity extends AppCompatActivity {
         preferences = getSharedPreferences("values", Context.MODE_PRIVATE);
         equalPressed = preferences.getBoolean("equalPressed", false);
         ans = Double.longBitsToDouble(preferences.getLong("ans", Double.doubleToLongBits(0D)));
-        if (ans != 0D) {
-            buttonAns.setEnabled(true);
-        }
         // Buttons
         buttonBasic0 = findViewById(R.id.basic_0);
         buttonBasic1 = findViewById(R.id.basic_1);
@@ -132,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         // Localize decimal separator
         buttonBasicDot.setText(decimal_separator);
         // Answer button should be disabled at beginning
-        buttonAns.setEnabled(false);
+        buttonAns.setEnabled(ans != 0D);
         // Power
         buttonBasicPow.setText(Html.fromHtml("x<sup><small>y</small></sup>"));
         // Backspace
