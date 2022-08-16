@@ -12,6 +12,7 @@ android {
         versionCode 20210327
         versionName '2.1.1'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        resConfigs "en", "es", "eu"
     }
     buildTypes {
         release {
