@@ -9,8 +9,8 @@ android {
         applicationId "inaki.sw.calculator"
         minSdkVersion 15
         targetSdkVersion 33
-        versionCode 20210327
-        versionName '2.1.1'
+        versionCode 20220817
+        versionName '2.2'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         resConfigs "en", "es", "eu"
     }
