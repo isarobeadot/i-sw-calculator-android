@@ -12,6 +12,9 @@
     <string name="divide" translatable="false">/</string>
     <string name="pow" translatable="false">^</string>
     <string name="plus_minus" translatable="false">+/-</string>
+    <string name="percent" translatable="false">%</string>
+    <string name="parenthesisL" translatable="false">(</string>
+    <string name="parenthesisR" translatable="false">)</string>
     <string name="b0" translatable="false">0</string>
     <string name="b1" translatable="false">1</string>
     <string name="b2" translatable="false">2</string>
@@ -28,4 +31,7 @@
     <string name="developer">Developed by Iñaki SoftWare</string>
     <string name="copy_ans">Copy answer</string>
     <string name="ans_copied">Answer copied to clipboard</string>
+    <string name="basic">Basic mode</string>
+    <string name="extended">Extended mode</string>
+    <string name="syntaxError">Syntax error</string>
 </resources>

@@ -10,4 +10,7 @@
     <string name="developer">Developed by Iñaki SoftWare</string>
     <string name="copy_ans">Copier la réponse</string>
     <string name="ans_copied">Réponse copiée dans le presse-papiers</string>
+    <string name="basic">Modo siple</string>
+    <string name="extended">Modo extendido</string>
+    <string name="syntaxError">Sintaxi errorea</string>
 </resources>

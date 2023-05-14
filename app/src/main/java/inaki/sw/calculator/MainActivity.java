@@ -12,6 +12,7 @@ import android.os.Vibrator;
 import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,15 +26,20 @@ import java.text.ParseException;
 import java.util.Locale;
 import java.util.Objects;
 
+import inaki.sw.calculator.utils.LayoutMode;
+import inaki.sw.calculator.utils.StringEvaluator;
+import inaki.sw.calculator.utils.SyntaxException;
+
 public class MainActivity extends AppCompatActivity {
 
-    private Button buttonBasic0, buttonBasic1, buttonBasic2, buttonBasic3, buttonBasic4, buttonBasic5, buttonBasic6, buttonBasic7, buttonBasic8, buttonBasic9, buttonBasicDot;
+    private Button button0, button1, button2, button3, button4, button5, button6, button7, button8, button9, buttonDot;
     private Button buttonAns, buttonClear, buttonQuit;
-    private Button buttonBasicBackspace, buttonBasicEqual;
-    private Button buttonBasicAdd, buttonBasicDivide, buttonBasicMultiply, buttonBasicPlusMinus, buttonBasicPow, buttonBasicSubtract;
-    private TextView textViewBasicTop;
-    private TextView textViewBasicOp;
-    private TextView textViewBasicMain;
+    private Button buttonBackspace, buttonEqual;
+    private Button buttonAdd, buttonDivide, buttonMultiply, buttonPlusMinus, buttonPow, buttonSubtract;
+    private Button buttonPercent, buttonParenthesisL, buttonParenthesisR;
+    private TextView textViewTop;
+    private TextView textViewOp;
+    private TextView textViewMain;
     private SharedPreferences preferences;
     private double ans = 0D;
     private boolean equalPressed = false;
@@ -42,11 +48,11 @@ public class MainActivity extends AppCompatActivity {
     private final DecimalFormat decimalFormat = new DecimalFormat("#0.####################");
     private final DecimalFormat scientificFormat = new DecimalFormat("0.0#################E0");
     private Vibrator vibrator;
+    private LayoutMode layout = LayoutMode.BASIC;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         initialize();
         addListeners();
     }
@@ -55,6 +61,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(@NonNull Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        MenuItem mode = menu.findItem(R.id.action_mode);
+        if (layout.equals(LayoutMode.EXTENDED)) {
+            mode.setTitle(R.string.basic);
+        } else {
+            mode.setTitle(R.string.extended);
+        }
         return true;
     }
 
@@ -70,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             return true;
         } else if (id == R.id.action_copy_ans) {
-            CharSequence text = textViewBasicTop.getText();
+            CharSequence text = textViewTop.getText();
             if (text == null || text.toString().equals("")) {
                 return true;
             }
@@ -82,6 +94,18 @@ public class MainActivity extends AppCompatActivity {
             Toast toast = Toast.makeText(getApplicationContext(), R.string.ans_copied, Toast.LENGTH_SHORT);
             toast.show();
             return true;
+        } else if (id == R.id.action_mode) {
+            if (layout.equals(LayoutMode.BASIC)) {
+                layout = LayoutMode.EXTENDED;
+            } else {
+                layout = LayoutMode.BASIC;
+            }
+            textViewTop.setText("");
+            textViewOp.setText("");
+            textViewMain.setText(R.string.b0);
+            _updatePreferences();
+            initialize();
+            addListeners();
         }
 
         return super.onOptionsItemSelected(item);
@@ -97,85 +121,105 @@ public class MainActivity extends AppCompatActivity {
         preferences = getSharedPreferences("values", Context.MODE_PRIVATE);
         equalPressed = preferences.getBoolean("equalPressed", false);
         ans = Double.longBitsToDouble(preferences.getLong("ans", Double.doubleToLongBits(0D)));
+        try {
+            layout = LayoutMode.valueOf(preferences.getString("layout", LayoutMode.BASIC.name()));
+        } catch (java.lang.IllegalArgumentException e) {
+            layout = LayoutMode.BASIC;
+        }
+        // Set layout
+        if (layout.equals(LayoutMode.EXTENDED)) {
+            setContentView(R.layout.activity_main_extended);
+        } else {
+            setContentView(R.layout.activity_main_basic);
+        }
         // Buttons
-        buttonBasic0 = findViewById(R.id.basic_0);
-        buttonBasic1 = findViewById(R.id.basic_1);
-        buttonBasic2 = findViewById(R.id.basic_2);
-        buttonBasic3 = findViewById(R.id.basic_3);
-        buttonBasic4 = findViewById(R.id.basic_4);
-        buttonBasic5 = findViewById(R.id.basic_5);
-        buttonBasic6 = findViewById(R.id.basic_6);
-        buttonBasic7 = findViewById(R.id.basic_7);
-        buttonBasic8 = findViewById(R.id.basic_8);
-        buttonBasic9 = findViewById(R.id.basic_9);
+        button0 = findViewById(R.id.b_0);
+        button1 = findViewById(R.id.b_1);
+        button2 = findViewById(R.id.b_2);
+        button3 = findViewById(R.id.b_3);
+        button4 = findViewById(R.id.b_4);
+        button5 = findViewById(R.id.b_5);
+        button6 = findViewById(R.id.b_6);
+        button7 = findViewById(R.id.b_7);
+        button8 = findViewById(R.id.b_8);
+        button9 = findViewById(R.id.b_9);
         buttonAns = findViewById(R.id.ans);
         buttonClear = findViewById(R.id.clear);
         buttonQuit = findViewById(R.id.quit);
-        buttonBasicBackspace = findViewById(R.id.basic_backspace);
-        buttonBasicDot = findViewById(R.id.basic_dot);
-        buttonBasicEqual = findViewById(R.id.basic_equal);
-        buttonBasicAdd = findViewById(R.id.basic_add);
-        buttonBasicSubtract = findViewById(R.id.basic_subtract);
-        buttonBasicMultiply = findViewById(R.id.basic_multiply);
-        buttonBasicPlusMinus = findViewById(R.id.basic_plusMinus);
-        buttonBasicDivide = findViewById(R.id.basic_divide);
-        buttonBasicPow = findViewById(R.id.basic_pow);
-        textViewBasicTop = findViewById(R.id.basic_top);
-        textViewBasicTop.setText(preferences.getString("top", ""));
-        textViewBasicOp = findViewById(R.id.basic_op);
-        textViewBasicOp.setText(preferences.getString("op", ""));
-        textViewBasicMain = findViewById(R.id.basic_main);
-        textViewBasicMain.setText(preferences.getString("main", getString(R.string.b0)));
+        buttonBackspace = findViewById(R.id.b_backspace);
+        buttonDot = findViewById(R.id.b_dot);
+        buttonEqual = findViewById(R.id.b_equal);
+        buttonAdd = findViewById(R.id.b_add);
+        buttonSubtract = findViewById(R.id.b_subtract);
+        buttonMultiply = findViewById(R.id.b_multiply);
+        buttonDivide = findViewById(R.id.b_divide);
+        buttonPow = findViewById(R.id.b_pow);
+        textViewTop = findViewById(R.id.tv_top);
+        textViewTop.setText(preferences.getString("top", ""));
+        textViewOp = findViewById(R.id.tv_op);
+        textViewOp.setText(preferences.getString("op", ""));
+        if (layout.equals(LayoutMode.EXTENDED)) textViewOp.setVisibility(View.GONE);
+        else textViewOp.setVisibility(View.VISIBLE);
+        textViewMain = findViewById(R.id.tv_main);
+        textViewMain.setText(preferences.getString("main", getString(R.string.b0)));
+        // Specific buttons of each layout
+        if (layout.equals(LayoutMode.EXTENDED)) {
+            buttonPercent = findViewById(R.id.b_percent);
+            buttonParenthesisL = findViewById(R.id.b_parenthesisL);
+            buttonParenthesisR = findViewById(R.id.b_parenthesisR);
+        } else {
+            buttonPlusMinus = findViewById(R.id.b_plusMinus);
+        }
         // Localize decimal separator
-        buttonBasicDot.setText(decimal_separator);
+        buttonDot.setText(decimal_separator);
         // Answer button should be disabled at beginning
         buttonAns.setEnabled(ans != 0D);
         // Power
-        buttonBasicPow.setText(Html.fromHtml("x<sup><small>y</small></sup>"));
+        buttonPow.setText(Html.fromHtml("x<sup><small>y</small></sup>"));
         // Backspace
-        buttonBasicBackspace.setText(Html.fromHtml("<small>&#10094;</small>"));
+        buttonBackspace.setText(Html.fromHtml("<small>&#10094;</small>"));
         // Vibrator
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
     }
 
     private void addListeners() {
-        buttonBasic0.setOnClickListener(v -> {
+        button0.setOnClickListener(v -> {
             _hapticFeedback();
             _number(getString(R.string.b0));
         });
-        buttonBasic1.setOnClickListener(v -> {
+        button1.setOnClickListener(v -> {
             _hapticFeedback();
             _number(getString(R.string.b1));
         });
-        buttonBasic2.setOnClickListener(v -> {
+        button2.setOnClickListener(v -> {
             _hapticFeedback();
             _number(getString(R.string.b2));
         });
-        buttonBasic3.setOnClickListener(v -> {
+        button3.setOnClickListener(v -> {
             _hapticFeedback();
             _number(getString(R.string.b3));
         });
-        buttonBasic4.setOnClickListener(v -> {
+        button4.setOnClickListener(v -> {
             _hapticFeedback();
             _number(getString(R.string.b4));
         });
-        buttonBasic5.setOnClickListener(v -> {
+        button5.setOnClickListener(v -> {
             _hapticFeedback();
             _number(getString(R.string.b5));
         });
-        buttonBasic6.setOnClickListener(v -> {
+        button6.setOnClickListener(v -> {
             _hapticFeedback();
             _number(getString(R.string.b6));
         });
-        buttonBasic7.setOnClickListener(v -> {
+        button7.setOnClickListener(v -> {
             _hapticFeedback();
             _number(getString(R.string.b7));
         });
-        buttonBasic8.setOnClickListener(v -> {
+        button8.setOnClickListener(v -> {
             _hapticFeedback();
             _number(getString(R.string.b8));
         });
-        buttonBasic9.setOnClickListener(v -> {
+        button9.setOnClickListener(v -> {
             _hapticFeedback();
             _number(getString(R.string.b9));
         });
@@ -191,43 +235,59 @@ public class MainActivity extends AppCompatActivity {
             _hapticFeedback();
             _quit();
         });
-        buttonBasicDot.setOnClickListener(v -> {
+        buttonDot.setOnClickListener(v -> {
             _hapticFeedback();
             _dot();
         });
-        buttonBasicEqual.setOnClickListener(v -> {
+        buttonEqual.setOnClickListener(v -> {
             _hapticFeedback();
             _equal();
         });
-        buttonBasicAdd.setOnClickListener(v -> {
+        buttonAdd.setOnClickListener(v -> {
             _hapticFeedback();
-            _operand(getString(R.string.add));
+            _operator(getString(R.string.add));
         });
-        buttonBasicBackspace.setOnClickListener(v -> {
+        buttonBackspace.setOnClickListener(v -> {
             _hapticFeedback();
             _backSpace();
         });
-        buttonBasicBackspace.setOnLongClickListener(v -> _backSpaceLong());
-        buttonBasicDivide.setOnClickListener(v -> {
+        buttonBackspace.setOnLongClickListener(v -> _backSpaceLong());
+        buttonDivide.setOnClickListener(v -> {
             _hapticFeedback();
-            _operand(getString(R.string.divide));
+            _operator(getString(R.string.divide));
         });
-        buttonBasicMultiply.setOnClickListener(v -> {
+        buttonMultiply.setOnClickListener(v -> {
             _hapticFeedback();
-            _operand(getString(R.string.multiply));
+            _operator(getString(R.string.multiply));
         });
-        buttonBasicPlusMinus.setOnClickListener(v -> {
+        buttonPow.setOnClickListener(v -> {
             _hapticFeedback();
-            _plusMinus();
+            _operator(getString(R.string.pow));
         });
-        buttonBasicPow.setOnClickListener(v -> {
+        buttonSubtract.setOnClickListener(v -> {
             _hapticFeedback();
-            _operand(getString(R.string.pow));
+            _operator(getString(R.string.subtract));
         });
-        buttonBasicSubtract.setOnClickListener(v -> {
-            _hapticFeedback();
-            _operand(getString(R.string.subtract));
-        });
+        // Specific buttons of each layout
+        if (layout.equals(LayoutMode.EXTENDED)) {
+            buttonPercent.setOnClickListener(v -> {
+                _hapticFeedback();
+                _operator(getString(R.string.percent));
+            });
+            buttonParenthesisL.setOnClickListener(v -> {
+                _hapticFeedback();
+                _operator(getString(R.string.parenthesisL));
+            });
+            buttonParenthesisR.setOnClickListener(v -> {
+                _hapticFeedback();
+                _operator(getString(R.string.parenthesisR));
+            });
+        } else {
+            buttonPlusMinus.setOnClickListener(v -> {
+                _hapticFeedback();
+                _plusMinus();
+            });
+        }
     }
 
     private void _ans() {
@@ -237,143 +297,152 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void _backSpace() {
-        String _main = textViewBasicMain.getText().toString();
+        String _main = textViewMain.getText().toString();
         int limit = _main.contains(getString(R.string.subtract)) ? 2 : 1;
         if (_main.length() > limit) {
-            textViewBasicMain.setText(_main.substring(0, _main.length() - 1));
+            textViewMain.setText(_main.substring(0, _main.length() - 1));
         } else if (_main.length() == limit) {
-            String _top = textViewBasicTop.getText().toString();
-            String _op = textViewBasicOp.getText().toString();
+            String _top = textViewTop.getText().toString();
+            String _op = textViewOp.getText().toString();
             if (!_top.equals("") && !_op.equals("")) {
-                textViewBasicTop.setText("");
-                textViewBasicOp.setText("");
-                textViewBasicMain.setText(_top);
+                textViewTop.setText("");
+                textViewOp.setText("");
+                textViewMain.setText(_top);
             } else {
-                textViewBasicMain.setText(getString(R.string.b0));
-                equalPressed = !textViewBasicTop.getText().toString().isEmpty();
+                textViewMain.setText(getString(R.string.b0));
+                equalPressed = !textViewTop.getText().toString().isEmpty();
             }
         }
-        _main = textViewBasicMain.getText().toString();
+        _main = textViewMain.getText().toString();
         if (_main.substring(_main.length() - 1).equals(decimal_separator)) {
-            textViewBasicMain.setText(_main.substring(0, _main.length() - 1));
+            textViewMain.setText(_main.substring(0, _main.length() - 1));
         }
         _updatePreferences();
     }
 
     private boolean _backSpaceLong() {
-        String _main = textViewBasicMain.getText().toString();
+        String _main = textViewMain.getText().toString();
         if (_main.equals(getString(R.string.b0))) {
             return false;
         }
-        textViewBasicMain.setText(getString(R.string.b0));
+        textViewMain.setText(getString(R.string.b0));
         _updatePreferences();
         return true;
     }
 
     private void _clear() {
-        textViewBasicTop.setText("");
-        textViewBasicOp.setText("");
-        textViewBasicMain.setText(getString(R.string.b0));
+        textViewTop.setText("");
+        textViewOp.setText("");
+        textViewMain.setText(getString(R.string.b0));
         equalPressed = false;
         _updatePreferences();
     }
 
     private void _dot() {
         String s;
-        if (!textViewBasicMain.getText().toString().contains(decimal_separator)) {
-            s = textViewBasicMain.getText() + decimal_separator;
-            textViewBasicMain.setText(s);
+        if (!textViewMain.getText().toString().contains(decimal_separator) || layout.equals(LayoutMode.EXTENDED)) {
+            s = textViewMain.getText() + decimal_separator;
+            textViewMain.setText(s);
         }
         _updatePreferences();
     }
 
     private void _equal() {
-        final String add = "+";
-        final String subtract = "−";
         try {
-            double d1;
-            double d2;
-            NumberFormat nf = NumberFormat.getInstance(locale);
-            switch (textViewBasicOp.getText().toString()) {
-                case add:
+            if (layout.equals(LayoutMode.EXTENDED)) {
+                ans = StringEvaluator.evaluate(this, textViewMain.getText().toString(), decimal_separator);
+            } else {
+                double d1;
+                double d2;
+                NumberFormat nf = NumberFormat.getInstance(locale);
+                if (textViewOp.getText().toString().equals(getString(R.string.add))) {
                     d1 = ans;
-                    d2 = Objects.requireNonNull(nf.parse(textViewBasicMain.getText().toString())).doubleValue();
+                    d2 = Objects.requireNonNull(nf.parse(textViewMain.getText().toString())).doubleValue();
                     ans = d1 + d2;
-                    break;
-                case subtract:
+                } else if (textViewOp.getText().toString().equals(getString(R.string.subtract))) {
                     d1 = ans;
-                    d2 = Objects.requireNonNull(nf.parse(textViewBasicMain.getText().toString())).doubleValue();
+                    d2 = Objects.requireNonNull(nf.parse(textViewMain.getText().toString())).doubleValue();
                     ans = d1 - d2;
-                    break;
-                case "x":
+                } else if (textViewOp.getText().toString().equals(getString(R.string.multiply))) {
                     d1 = ans;
-                    d2 = Objects.requireNonNull(nf.parse(textViewBasicMain.getText().toString())).doubleValue();
+                    d2 = Objects.requireNonNull(nf.parse(textViewMain.getText().toString())).doubleValue();
                     ans = d1 * d2;
-                    break;
-                case "/":
+                } else if (textViewOp.getText().toString().equals(getString(R.string.divide))) {
                     d1 = ans;
-                    d2 = Objects.requireNonNull(nf.parse(textViewBasicMain.getText().toString())).doubleValue();
+                    d2 = Objects.requireNonNull(nf.parse(textViewMain.getText().toString())).doubleValue();
                     ans = d1 / d2;
-                    break;
-                case "^":
+                } else if (textViewOp.getText().toString().equals(getString(R.string.pow))) {
                     d1 = ans;
-                    d2 = Objects.requireNonNull(nf.parse(textViewBasicMain.getText().toString())).doubleValue();
+                    d2 = Objects.requireNonNull(nf.parse(textViewMain.getText().toString())).doubleValue();
                     ans = Math.pow(d1, d2);
-                    break;
-                default:
-                    d2 = Objects.requireNonNull(nf.parse(textViewBasicMain.getText().toString())).doubleValue();
+                } else {
+                    d2 = Objects.requireNonNull(nf.parse(textViewMain.getText().toString())).doubleValue();
                     ans = d2;
-                    break;
+                }
             }
             _clear();
             _parseAnswerToTop();
             // Enable answer button
             buttonAns.setEnabled(true);
-        } catch (ParseException pe) {
+            equalPressed = true;
+        } catch (ParseException e) {
             _clear();
             _parseAnswerToTop();
+            equalPressed = true;
+        } catch (SyntaxException e) {
+            equalPressed = false;
+            Toast t = Toast.makeText(this, getString(R.string.syntaxError), Toast.LENGTH_LONG);
+            t.show();
         }
-        equalPressed = true;
         _updatePreferences();
     }
 
     private void _parseAnswerToTop() {
         if (Double.toString(ans).contains("E")) {
-            textViewBasicTop.setText(scientificFormat.format(ans));
+            textViewTop.setText(scientificFormat.format(ans));
         } else {
-            textViewBasicTop.setText(decimalFormat.format(ans));
+            textViewTop.setText(decimalFormat.format(ans));
         }
     }
 
     private void _number(String s) {
-        if (textViewBasicMain.getText().equals(getString(R.string.b0))) {
-            textViewBasicMain.setText("");
+        if (textViewMain.getText().equals(getString(R.string.b0))) {
+            textViewMain.setText("");
         }
-        if (textViewBasicMain.getText().equals(getString(R.string.subtract) + getString(R.string.b0))) {
-            textViewBasicMain.setText(getString(R.string.subtract));
+        if (textViewMain.getText().equals(getString(R.string.subtract) + getString(R.string.b0))) {
+            textViewMain.setText(getString(R.string.subtract));
         }
-        s = textViewBasicMain.getText() + s;
-        textViewBasicMain.setText(s);
+        s = textViewMain.getText() + s;
+        textViewMain.setText(s);
         equalPressed = false;
         _updatePreferences();
     }
 
-    private void _operand(String s) {
-        if (!equalPressed) {
-            _equal();
+    private void _operator(String s) {
+        if (layout.equals(LayoutMode.EXTENDED)) {
+            if (textViewMain.getText().equals(getString(R.string.b0)) &&
+                    (s.equals(getString(R.string.add)) || s.equals(getString(R.string.subtract)))) {
+                textViewMain.setText("");
+            }
+            s = textViewMain.getText() + s;
+            textViewMain.setText(s);
+        } else {
+            if (!equalPressed) {
+                _equal();
+            }
+            textViewOp.setText(s);
+            equalPressed = false;
         }
-        textViewBasicOp.setText(s);
-        equalPressed = false;
         _updatePreferences();
     }
 
     private void _plusMinus() {
-        String _main = textViewBasicMain.getText().toString();
+        String _main = textViewMain.getText().toString();
         if (_main.charAt(0) == getString(R.string.subtract).charAt(0)) {
-            textViewBasicMain.setText(_main.replace(getString(R.string.subtract), ""));
+            textViewMain.setText(_main.replace(getString(R.string.subtract), ""));
         } else {
             _main = getString(R.string.subtract) + _main;
-            textViewBasicMain.setText(_main);
+            textViewMain.setText(_main);
         }
         _updatePreferences();
     }
@@ -390,11 +459,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void _updatePreferences() {
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("top", textViewBasicTop.getText().toString());
-        editor.putString("op", textViewBasicOp.getText().toString());
-        editor.putString("main", textViewBasicMain.getText().toString());
+        editor.putString("top", textViewTop.getText().toString());
+        editor.putString("op", textViewOp.getText().toString());
+        editor.putString("main", textViewMain.getText().toString());
         editor.putBoolean("equalPressed", equalPressed);
         editor.putLong("ans", Double.doubleToRawLongBits(ans));
+        editor.putString("layout", layout.name());
         editor.apply();
     }
 

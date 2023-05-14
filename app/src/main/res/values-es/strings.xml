@@ -10,4 +10,7 @@
     <string name="developer">Developed by Iñaki SoftWare</string>
     <string name="copy_ans">Copiar respuesta</string>
     <string name="ans_copied">Respuesta copiada al portapapeles</string>
+    <string name="basic">Mode simple</string>
+    <string name="extended">Mode étendu</string>
+    <string name="syntaxError">Erreur de syntaxe</string>
 </resources>

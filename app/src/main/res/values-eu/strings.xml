@@ -10,4 +10,7 @@
     <string name="developer">Developed by Iñaki SoftWare</string>
     <string name="copy_ans">Erantzuna kopiatu</string>
     <string name="ans_copied">Erantzuna arbelera kopiatu da</string>
+    <string name="basic">Modu sinplea</string>
+    <string name="extended">Modu aurreratua</string>
+    <string name="syntaxError">Error de sintaxis</string>
 </resources>

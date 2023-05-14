@@ -12,9 +12,16 @@
         app:showAsAction="ifRoom" />
 
     <item
+        android:id="@+id/action_mode"
+        android:orderInCategory="101"
+        android:title="@string/extended"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/action_about"
         android:icon="@drawable/ic_outline_info_24"
-        android:orderInCategory="101"
+        android:orderInCategory="102"
         android:title="@string/about"
         app:showAsAction="ifRoom" />
+
 </menu>
