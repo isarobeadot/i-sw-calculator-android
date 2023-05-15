@@ -9,8 +9,8 @@ android {
         applicationId "inaki.sw.calculator"
         minSdkVersion 15
         targetSdkVersion 33
-        versionCode 20230614
-        versionName '3.0'
+        versionCode 20230615
+        versionName '3.0.1'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         resourceConfigurations += ['en', 'es', 'eu', 'fr']
     }

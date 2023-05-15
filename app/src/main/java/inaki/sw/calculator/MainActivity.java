@@ -420,8 +420,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void _operator(String s) {
         if (layout.equals(LayoutMode.EXTENDED)) {
-            if (textViewMain.getText().equals(getString(R.string.b0)) &&
-                    (s.equals(getString(R.string.add)) || s.equals(getString(R.string.subtract)))) {
+            if (textViewMain.getText().equals(getString(R.string.b0))
+                    && !s.equals(getString(R.string.multiply))
+                    && !s.equals(getString(R.string.divide))
+                    && !s.equals(getString(R.string.pow))
+                    && !s.equals(getString(R.string.percent))) {
                 textViewMain.setText("");
             }
             s = textViewMain.getText() + s;
