@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonAns, buttonClear, buttonQuit;
     private Button buttonBackspace, buttonEqual;
     private Button buttonAdd, buttonDivide, buttonMultiply, buttonPlusMinus, buttonPow, buttonSubtract;
-    private Button buttonPercent, buttonParenthesisL, buttonParenthesisR;
+    private Button buttonPercent, buttonParenthesisL, buttonParenthesisR, buttonFactorial;
     private TextView textViewTop;
     private TextView textViewOp;
     private TextView textViewMain;
@@ -167,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
             buttonPercent = findViewById(R.id.b_percent);
             buttonParenthesisL = findViewById(R.id.b_parenthesisL);
             buttonParenthesisR = findViewById(R.id.b_parenthesisR);
+            buttonFactorial = findViewById(R.id.b_factorial);
         } else {
             buttonPlusMinus = findViewById(R.id.b_plusMinus);
         }
@@ -281,6 +282,10 @@ public class MainActivity extends AppCompatActivity {
             buttonParenthesisR.setOnClickListener(v -> {
                 _hapticFeedback();
                 _operator(getString(R.string.parenthesisR));
+            });
+            buttonFactorial.setOnClickListener(v -> {
+                _hapticFeedback();
+                _operator(getString(R.string.factorial));
             });
         } else {
             buttonPlusMinus.setOnClickListener(v -> {

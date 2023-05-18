@@ -105,14 +105,14 @@
             android:textSize="@dimen/button_number_text_size" />
 
         <Button
-            android:id="@+id/b_emptyA"
+            android:id="@+id/b_factorial"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/button_margin"
             android:layout_weight="20"
             android:background="@color/colorOperationButtonBackground"
-            android:enabled="false"
+            android:text="@string/factorial"
             android:textAllCaps="false"
             android:textColor="@color/colorOperationButtonText"
             android:textSize="@dimen/button_number_text_size" />
@@ -349,7 +349,7 @@
             android:textSize="@dimen/button_number_text_size" />
 
         <Button
-            android:id="@+id/b_emptyB"
+            android:id="@+id/b_emptyA"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
