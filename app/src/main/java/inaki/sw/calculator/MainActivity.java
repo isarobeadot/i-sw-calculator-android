@@ -296,8 +296,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void _ans() {
-        _parseAnswerToTop();
-        equalPressed = true;
+        if (layout.equals(LayoutMode.EXTENDED)) {
+            _parseAnswerToMain();
+        } else {
+            _parseAnswerToTop();
+            equalPressed = true;
+        }
         _updatePreferences();
     }
 
@@ -402,6 +406,14 @@ public class MainActivity extends AppCompatActivity {
         _updatePreferences();
     }
 
+    private void _parseAnswerToMain() {
+        if (Double.toString(ans).contains("E")) {
+            textViewMain.setText(scientificFormat.format(ans));
+        } else {
+            textViewMain.setText(decimalFormat.format(ans));
+        }
+    }
+
     private void _parseAnswerToTop() {
         if (Double.toString(ans).contains("E")) {
             textViewTop.setText(scientificFormat.format(ans));
@@ -429,7 +441,8 @@ public class MainActivity extends AppCompatActivity {
                     && !s.equals(getString(R.string.multiply))
                     && !s.equals(getString(R.string.divide))
                     && !s.equals(getString(R.string.pow))
-                    && !s.equals(getString(R.string.percent))) {
+                    && !s.equals(getString(R.string.percent))
+                    && !s.equals(getString(R.string.factorial))) {
                 textViewMain.setText("");
             }
             s = textViewMain.getText() + s;
