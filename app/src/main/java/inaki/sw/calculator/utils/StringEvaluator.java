@@ -14,7 +14,8 @@ public class StringEvaluator {
                 .replace(context.getString(R.string.multiply), "*")
                 .replace(context.getString(R.string.divide), "/")
                 .replace(context.getString(R.string.pow), "^")
-                .replace(context.getString(R.string.percent), "%");
+                .replace(context.getString(R.string.percent), "%")
+                .replace(context.getString(R.string.factorial), "!");
         Expression e = new Expression(expression);
         if (!e.checkSyntax()) {
             throw new SyntaxException();

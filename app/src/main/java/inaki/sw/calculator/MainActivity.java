@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,9 +38,8 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonBackspace, buttonEqual;
     private Button buttonAdd, buttonDivide, buttonMultiply, buttonPlusMinus, buttonPow, buttonSubtract;
     private Button buttonPercent, buttonParenthesisL, buttonParenthesisR, buttonFactorial;
-    private TextView textViewTop;
-    private TextView textViewOp;
-    private TextView textViewMain;
+    private TextView textViewTop, textViewOp;
+    private EditText editTextMain;
     private SharedPreferences preferences;
     private double ans = 0D;
     private boolean equalPressed = false;
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
             }
             textViewTop.setText("");
             textViewOp.setText("");
-            textViewMain.setText(R.string.b0);
+            editTextMain.setText(R.string.b0);
             _updatePreferences();
             initialize();
             addListeners();
@@ -160,8 +160,9 @@ public class MainActivity extends AppCompatActivity {
         textViewOp.setText(preferences.getString("op", ""));
         if (layout.equals(LayoutMode.EXTENDED)) textViewOp.setVisibility(View.GONE);
         else textViewOp.setVisibility(View.VISIBLE);
-        textViewMain = findViewById(R.id.tv_main);
-        textViewMain.setText(preferences.getString("main", getString(R.string.b0)));
+        editTextMain = findViewById(R.id.et_main);
+        editTextMain.setText(preferences.getString("main", getString(R.string.b0)));
+        editTextMain.setEnabled(false); // TODO: enable with extended layout
         // Specific buttons of each layout
         if (layout.equals(LayoutMode.EXTENDED)) {
             buttonPercent = findViewById(R.id.b_percent);
@@ -306,35 +307,35 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void _backSpace() {
-        String _main = textViewMain.getText().toString();
+        String _main = editTextMain.getText().toString();
         int limit = _main.contains(getString(R.string.subtract)) ? 2 : 1;
         if (_main.length() > limit) {
-            textViewMain.setText(_main.substring(0, _main.length() - 1));
+            editTextMain.setText(_main.substring(0, _main.length() - 1));
         } else if (_main.length() == limit) {
             String _top = textViewTop.getText().toString();
             String _op = textViewOp.getText().toString();
             if (!_top.equals("") && !_op.equals("")) {
                 textViewTop.setText("");
                 textViewOp.setText("");
-                textViewMain.setText(_top);
+                editTextMain.setText(_top);
             } else {
-                textViewMain.setText(getString(R.string.b0));
+                editTextMain.setText(getString(R.string.b0));
                 equalPressed = !textViewTop.getText().toString().isEmpty();
             }
         }
-        _main = textViewMain.getText().toString();
+        _main = editTextMain.getText().toString();
         if (_main.substring(_main.length() - 1).equals(decimal_separator)) {
-            textViewMain.setText(_main.substring(0, _main.length() - 1));
+            editTextMain.setText(_main.substring(0, _main.length() - 1));
         }
         _updatePreferences();
     }
 
     private boolean _backSpaceLong() {
-        String _main = textViewMain.getText().toString();
+        String _main = editTextMain.getText().toString();
         if (_main.equals(getString(R.string.b0))) {
             return false;
         }
-        textViewMain.setText(getString(R.string.b0));
+        editTextMain.setText(getString(R.string.b0));
         _updatePreferences();
         return true;
     }
@@ -342,16 +343,16 @@ public class MainActivity extends AppCompatActivity {
     private void _clear() {
         textViewTop.setText("");
         textViewOp.setText("");
-        textViewMain.setText(getString(R.string.b0));
+        editTextMain.setText(getString(R.string.b0));
         equalPressed = false;
         _updatePreferences();
     }
 
     private void _dot() {
         String s;
-        if (!textViewMain.getText().toString().contains(decimal_separator) || layout.equals(LayoutMode.EXTENDED)) {
-            s = textViewMain.getText() + decimal_separator;
-            textViewMain.setText(s);
+        if (!editTextMain.getText().toString().contains(decimal_separator) || layout.equals(LayoutMode.EXTENDED)) {
+            s = editTextMain.getText().toString() + decimal_separator;
+            editTextMain.setText(s);
         }
         _updatePreferences();
     }
@@ -359,33 +360,33 @@ public class MainActivity extends AppCompatActivity {
     private void _equal() {
         try {
             if (layout.equals(LayoutMode.EXTENDED)) {
-                ans = StringEvaluator.evaluate(this, textViewMain.getText().toString(), decimal_separator);
+                ans = StringEvaluator.evaluate(this, editTextMain.getText().toString(), decimal_separator);
             } else {
                 double d1;
                 double d2;
                 NumberFormat nf = NumberFormat.getInstance(locale);
                 if (textViewOp.getText().toString().equals(getString(R.string.add))) {
                     d1 = ans;
-                    d2 = Objects.requireNonNull(nf.parse(textViewMain.getText().toString())).doubleValue();
+                    d2 = Objects.requireNonNull(nf.parse(editTextMain.getText().toString())).doubleValue();
                     ans = d1 + d2;
                 } else if (textViewOp.getText().toString().equals(getString(R.string.subtract))) {
                     d1 = ans;
-                    d2 = Objects.requireNonNull(nf.parse(textViewMain.getText().toString())).doubleValue();
+                    d2 = Objects.requireNonNull(nf.parse(editTextMain.getText().toString())).doubleValue();
                     ans = d1 - d2;
                 } else if (textViewOp.getText().toString().equals(getString(R.string.multiply))) {
                     d1 = ans;
-                    d2 = Objects.requireNonNull(nf.parse(textViewMain.getText().toString())).doubleValue();
+                    d2 = Objects.requireNonNull(nf.parse(editTextMain.getText().toString())).doubleValue();
                     ans = d1 * d2;
                 } else if (textViewOp.getText().toString().equals(getString(R.string.divide))) {
                     d1 = ans;
-                    d2 = Objects.requireNonNull(nf.parse(textViewMain.getText().toString())).doubleValue();
+                    d2 = Objects.requireNonNull(nf.parse(editTextMain.getText().toString())).doubleValue();
                     ans = d1 / d2;
                 } else if (textViewOp.getText().toString().equals(getString(R.string.pow))) {
                     d1 = ans;
-                    d2 = Objects.requireNonNull(nf.parse(textViewMain.getText().toString())).doubleValue();
+                    d2 = Objects.requireNonNull(nf.parse(editTextMain.getText().toString())).doubleValue();
                     ans = Math.pow(d1, d2);
                 } else {
-                    d2 = Objects.requireNonNull(nf.parse(textViewMain.getText().toString())).doubleValue();
+                    d2 = Objects.requireNonNull(nf.parse(editTextMain.getText().toString())).doubleValue();
                     ans = d2;
                 }
             }
@@ -408,9 +409,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void _parseAnswerToMain() {
         if (Double.toString(ans).contains("E")) {
-            textViewMain.setText(scientificFormat.format(ans));
+            editTextMain.setText(scientificFormat.format(ans));
         } else {
-            textViewMain.setText(decimalFormat.format(ans));
+            editTextMain.setText(decimalFormat.format(ans));
         }
     }
 
@@ -423,30 +424,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void _number(String s) {
-        if (textViewMain.getText().equals(getString(R.string.b0))) {
-            textViewMain.setText("");
+        if (editTextMain.getText().toString().equals(getString(R.string.b0))) {
+            editTextMain.setText("");
         }
-        if (textViewMain.getText().equals(getString(R.string.subtract) + getString(R.string.b0))) {
-            textViewMain.setText(getString(R.string.subtract));
+        if (editTextMain.getText().toString().equals(getString(R.string.subtract) + getString(R.string.b0))) {
+            editTextMain.setText(getString(R.string.subtract));
         }
-        s = textViewMain.getText() + s;
-        textViewMain.setText(s);
+        s = editTextMain.getText().toString() + s;
+        editTextMain.setText(s);
         equalPressed = false;
         _updatePreferences();
     }
 
     private void _operator(String s) {
         if (layout.equals(LayoutMode.EXTENDED)) {
-            if (textViewMain.getText().equals(getString(R.string.b0))
+            if (editTextMain.getText().toString().equals(getString(R.string.b0))
                     && !s.equals(getString(R.string.multiply))
                     && !s.equals(getString(R.string.divide))
                     && !s.equals(getString(R.string.pow))
                     && !s.equals(getString(R.string.percent))
                     && !s.equals(getString(R.string.factorial))) {
-                textViewMain.setText("");
+                editTextMain.setText("");
             }
-            s = textViewMain.getText() + s;
-            textViewMain.setText(s);
+            s = editTextMain.getText().toString() + s;
+            editTextMain.setText(s);
         } else {
             if (!equalPressed) {
                 _equal();
@@ -458,12 +459,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void _plusMinus() {
-        String _main = textViewMain.getText().toString();
+        String _main = editTextMain.getText().toString();
         if (_main.charAt(0) == getString(R.string.subtract).charAt(0)) {
-            textViewMain.setText(_main.replace(getString(R.string.subtract), ""));
+            editTextMain.setText(_main.replace(getString(R.string.subtract), ""));
         } else {
             _main = getString(R.string.subtract) + _main;
-            textViewMain.setText(_main);
+            editTextMain.setText(_main);
         }
         _updatePreferences();
     }
@@ -482,7 +483,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("top", textViewTop.getText().toString());
         editor.putString("op", textViewOp.getText().toString());
-        editor.putString("main", textViewMain.getText().toString());
+        editor.putString("main", editTextMain.getText().toString());
         editor.putBoolean("equalPressed", equalPressed);
         editor.putLong("ans", Double.doubleToRawLongBits(ans));
         editor.putString("layout", layout.name());

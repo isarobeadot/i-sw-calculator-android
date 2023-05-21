@@ -42,8 +42,8 @@
             android:textSize="@dimen/text_view_top_text_size" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tv_main"
+    <EditText
+        android:id="@+id/et_main"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="@dimen/button_margin"
@@ -53,6 +53,8 @@
         android:layout_weight="30"
         android:background="@color/colorTextViewBackground"
         android:gravity="center|end"
+        android:importantForAutofill="no"
+        android:inputType="text"
         android:paddingLeft="@dimen/text_view_padding"
         android:paddingRight="@dimen/text_view_padding"
         android:text="@string/TextView"
