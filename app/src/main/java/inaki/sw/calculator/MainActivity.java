@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Button button0, button1, button2, button3, button4, button5, button6, button7, button8, button9, buttonDot;
     private Button buttonAns, buttonClear, buttonQuit;
-    private Button buttonBackspace, buttonEqual;
+    private ImageButton buttonBackspace;
+    private Button  buttonEqual;
     private Button buttonAdd, buttonDivide, buttonMultiply, buttonPlusMinus, buttonPow, buttonSubtract;
     private Button buttonPercent, buttonParenthesisL, buttonParenthesisR, buttonFactorial;
     private Button buttonSin, buttonCos, buttonTan;
@@ -182,8 +184,6 @@ public class MainActivity extends AppCompatActivity {
         buttonAns.setEnabled(ans != 0D);
         // Power
         buttonPow.setText(Html.fromHtml("x<sup><small>y</small></sup>"));
-        // Backspace
-        buttonBackspace.setText(Html.fromHtml("<small>&#10094;</small>"));
         // Vibrator
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
     }
