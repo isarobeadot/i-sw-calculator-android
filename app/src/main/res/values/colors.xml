@@ -7,13 +7,16 @@
     <!-- Light theme -->
     <color name="colorBackground">#CCC</color>
     <color name="colorNumberButtonBackground">#080</color>
+    <color name="colorNumberButtonBackgroundPressed">#191</color>
     <color name="colorNumberButtonText">#FFF</color>
     <color name="colorOperationButtonBackground">#AFA</color>
+    <color name="colorOperationButtonBackgroundPressed">#BFB</color>
     <color name="colorOperationButtonText">#252525</color>
     <color name="colorActionButtonBackground">#080</color>
     <color name="colorActionButtonText">#FFF</color>
     <color name="colorTextViewBackground">#FFF</color>
     <color name="colorTextViewText">#252525</color>
+    <color name="colorTextViewTextTop">#555</color>
     <color name="colorTextViewOperationBackground">#AFA</color>
     <color name="colorTextViewOperationText">#252525</color>
     <color name="colorTextViewAboutText">#252525</color>
