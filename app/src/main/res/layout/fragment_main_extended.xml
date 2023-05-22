@@ -15,7 +15,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="10"
+        android:layout_weight="8"
         android:orientation="horizontal">
 
         <TextView
@@ -50,7 +50,7 @@
         android:layout_marginTop="@dimen/button_margin"
         android:layout_marginRight="@dimen/button_margin"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:layout_weight="30"
+        android:layout_weight="20"
         android:background="@color/colorTextViewBackground"
         android:gravity="center|end"
         android:importantForAutofill="no"
@@ -66,7 +66,7 @@
         android:layout_height="0dp"
         android:layout_weight="12"
         android:orientation="horizontal"
-        android:weightSum="100">
+        android:weightSum="5">
 
         <Button
             android:id="@+id/b_emptyA"
@@ -74,7 +74,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/button_margin"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:background="@color/colorOperationButtonBackground"
             android:enabled="false"
             android:textColor="@color/colorOperationButtonText"
@@ -86,7 +86,79 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/button_margin"
-            android:layout_weight="20"
+            android:layout_weight="1"
+            android:background="@color/colorOperationButtonBackground"
+            android:enabled="false"
+            android:textColor="@color/colorOperationButtonText"
+            android:textSize="@dimen/button_number_text_size" />
+
+        <Button
+            android:id="@+id/b_sin"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/button_margin"
+            android:layout_weight="1"
+            android:background="@color/colorOperationButtonBackground"
+            android:text="@string/sin"
+            android:textAllCaps="false"
+            android:textColor="@color/colorOperationButtonText"
+            android:textSize="@dimen/button_number_text_size" />
+
+        <Button
+            android:id="@+id/b_cos"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/button_margin"
+            android:layout_weight="1"
+            android:background="@color/colorOperationButtonBackground"
+            android:text="@string/cos"
+            android:textAllCaps="false"
+            android:textColor="@color/colorOperationButtonText"
+            android:textSize="@dimen/button_number_text_size" />
+
+        <Button
+            android:id="@+id/b_tan"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/button_margin"
+            android:layout_weight="1"
+            android:background="@color/colorOperationButtonBackground"
+            android:text="@string/tan"
+            android:textAllCaps="false"
+            android:textColor="@color/colorOperationButtonText"
+            android:textSize="@dimen/button_number_text_size" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="12"
+        android:orientation="horizontal"
+        android:weightSum="5">
+
+        <Button
+            android:id="@+id/b_emptyF"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/button_margin"
+            android:layout_weight="1"
+            android:background="@color/colorOperationButtonBackground"
+            android:enabled="false"
+            android:textColor="@color/colorOperationButtonText"
+            android:textSize="@dimen/button_number_text_size" />
+
+        <Button
+            android:id="@+id/b_emptyG"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/button_margin"
+            android:layout_weight="1"
             android:background="@color/colorOperationButtonBackground"
             android:enabled="false"
             android:textColor="@color/colorOperationButtonText"
@@ -98,7 +170,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/button_margin"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:background="@color/colorOperationButtonBackground"
             android:text="@string/factorial"
             android:textAllCaps="false"
@@ -111,7 +183,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/button_margin"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:background="@color/colorOperationButtonBackground"
             android:text="@string/parenthesisL"
             android:textAllCaps="false"
@@ -124,7 +196,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/button_margin"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:background="@color/colorOperationButtonBackground"
             android:text="@string/parenthesisR"
             android:textAllCaps="false"
@@ -138,7 +210,7 @@
         android:layout_height="0dp"
         android:layout_weight="12"
         android:orientation="horizontal"
-        android:weightSum="100">
+        android:weightSum="5">
 
         <Button
             android:id="@+id/b_7"
@@ -146,7 +218,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/button_margin"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:background="@color/colorNumberButtonBackground"
             android:text="@string/b7"
             android:textColor="@color/colorNumberButtonText"
@@ -159,7 +231,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/button_margin"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:background="@color/colorNumberButtonBackground"
             android:text="@string/b8"
             android:textColor="@color/colorNumberButtonText"
@@ -171,7 +243,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/button_margin"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:background="@color/colorNumberButtonBackground"
             android:text="@string/b9"
             android:textColor="@color/colorNumberButtonText"
@@ -183,7 +255,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/button_margin"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:background="@color/colorOperationButtonBackground"
             android:text="@string/pow"
             android:textAllCaps="false"
@@ -196,7 +268,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/button_margin"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:background="@color/colorOperationButtonBackground"
             android:text="@string/percent"
             android:textColor="@color/colorOperationButtonText"
@@ -208,7 +280,7 @@
         android:layout_height="0dp"
         android:layout_weight="12"
         android:orientation="horizontal"
-        android:weightSum="100">
+        android:weightSum="5">
 
         <Button
             android:id="@+id/b_4"
@@ -216,7 +288,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/button_margin"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:background="@color/colorNumberButtonBackground"
             android:text="@string/b4"
             android:textColor="@color/colorNumberButtonText"
@@ -228,7 +300,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/button_margin"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:background="@color/colorNumberButtonBackground"
             android:text="@string/b5"
             android:textColor="@color/colorNumberButtonText"
@@ -240,7 +312,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/button_margin"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:background="@color/colorNumberButtonBackground"
             android:text="@string/b6"
             android:textColor="@color/colorNumberButtonText"
@@ -252,7 +324,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/button_margin"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:background="@color/colorOperationButtonBackground"
             android:text="@string/multiply"
             android:textAllCaps="false"
@@ -265,7 +337,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/button_margin"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:background="@color/colorOperationButtonBackground"
             android:text="@string/divide"
             android:textColor="@color/colorOperationButtonText"
@@ -277,7 +349,7 @@
         android:layout_height="0dp"
         android:layout_weight="12"
         android:orientation="horizontal"
-        android:weightSum="100">
+        android:weightSum="5">
 
         <Button
             android:id="@+id/b_1"
@@ -285,7 +357,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/button_margin"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:background="@color/colorNumberButtonBackground"
             android:text="@string/b1"
             android:textColor="@color/colorNumberButtonText"
@@ -297,7 +369,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/button_margin"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:background="@color/colorNumberButtonBackground"
             android:text="@string/b2"
             android:textColor="@color/colorNumberButtonText"
@@ -309,7 +381,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/button_margin"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:background="@color/colorNumberButtonBackground"
             android:text="@string/b3"
             android:textColor="@color/colorNumberButtonText"
@@ -321,7 +393,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/button_margin"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:background="@color/colorOperationButtonBackground"
             android:text="@string/add"
             android:textColor="@color/colorOperationButtonText"
@@ -333,7 +405,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/button_margin"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:background="@color/colorOperationButtonBackground"
             android:text="@string/subtract"
             android:textColor="@color/colorOperationButtonText"
@@ -345,7 +417,7 @@
         android:layout_height="0dp"
         android:layout_weight="12"
         android:orientation="horizontal"
-        android:weightSum="100">
+        android:weightSum="5">
 
         <Button
             android:id="@+id/b_empty"
@@ -353,7 +425,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/button_margin"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:background="@color/colorNumberButtonBackground"
             android:enabled="false"
             android:textColor="@color/colorNumberButtonBackground"
@@ -365,7 +437,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/button_margin"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:background="@color/colorNumberButtonBackground"
             android:text="@string/b0"
             android:textColor="@color/colorNumberButtonText"
@@ -377,7 +449,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/button_margin"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:background="@color/colorNumberButtonBackground"
             android:text="@string/dot"
             android:textColor="@color/colorNumberButtonText"
@@ -389,7 +461,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/button_margin"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:background="@color/colorOperationButtonBackground"
             android:text="@string/backspace"
             android:textColor="@color/colorOperationButtonText"
@@ -401,7 +473,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/button_margin"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:background="@color/colorOperationButtonBackground"
             android:text="@string/equal"
             android:textColor="@color/colorOperationButtonText"

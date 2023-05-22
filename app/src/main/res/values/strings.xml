@@ -16,6 +16,9 @@
     <string name="parenthesisL" translatable="false">(</string>
     <string name="parenthesisR" translatable="false">)</string>
     <string name="factorial" translatable="false">!</string>
+    <string name="sin" translatable="false">sin</string>
+    <string name="cos" translatable="false">cos</string>
+    <string name="tan" translatable="false">tan</string>
     <string name="b0" translatable="false">0</string>
     <string name="b1" translatable="false">1</string>
     <string name="b2" translatable="false">2</string>

@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonBackspace, buttonEqual;
     private Button buttonAdd, buttonDivide, buttonMultiply, buttonPlusMinus, buttonPow, buttonSubtract;
     private Button buttonPercent, buttonParenthesisL, buttonParenthesisR, buttonFactorial;
+    private Button buttonSin, buttonCos, buttonTan;
     private TextView textViewTop, textViewOp;
     private EditText editTextMain;
     private SharedPreferences preferences;
@@ -169,6 +170,9 @@ public class MainActivity extends AppCompatActivity {
             buttonParenthesisL = findViewById(R.id.b_parenthesisL);
             buttonParenthesisR = findViewById(R.id.b_parenthesisR);
             buttonFactorial = findViewById(R.id.b_factorial);
+            buttonSin = findViewById(R.id.b_sin);
+            buttonCos = findViewById(R.id.b_cos);
+            buttonTan = findViewById(R.id.b_tan);
         } else {
             buttonPlusMinus = findViewById(R.id.b_plusMinus);
         }
@@ -288,6 +292,18 @@ public class MainActivity extends AppCompatActivity {
                 _hapticFeedback();
                 _operator(getString(R.string.factorial));
             });
+            buttonSin.setOnClickListener(v -> {
+                _hapticFeedback();
+                _function(getString(R.string.sin));
+            });
+            buttonCos.setOnClickListener(v -> {
+                _hapticFeedback();
+                _function(getString(R.string.cos));
+            });
+            buttonTan.setOnClickListener(v -> {
+                _hapticFeedback();
+                _function(getString(R.string.tan));
+            });
         } else {
             buttonPlusMinus.setOnClickListener(v -> {
                 _hapticFeedback();
@@ -308,9 +324,19 @@ public class MainActivity extends AppCompatActivity {
 
     private void _backSpace() {
         String _main = editTextMain.getText().toString();
-        int limit = _main.contains(getString(R.string.subtract)) ? 2 : 1;
+        int limit = _main.startsWith(getString(R.string.subtract)) ? 2 : 1;
         if (_main.length() > limit) {
-            editTextMain.setText(_main.substring(0, _main.length() - 1));
+            if (layout.equals(LayoutMode.EXTENDED) &&
+                    (_main.endsWith(getString(R.string.sin) + getString(R.string.parenthesisL)) ||
+                            _main.endsWith(getString(R.string.cos) + getString(R.string.parenthesisL)) ||
+                            _main.endsWith(getString(R.string.tan) + getString(R.string.parenthesisL)))) {
+                editTextMain.setText(_main.substring(0, _main.length() - 4));
+                if (editTextMain.getText().toString().equals("")) {
+                    editTextMain.setText(getString(R.string.b0));
+                }
+            } else {
+                editTextMain.setText(_main.substring(0, _main.length() - 1));
+            }
         } else if (_main.length() == limit) {
             String _top = textViewTop.getText().toString();
             String _op = textViewOp.getText().toString();
@@ -465,6 +491,20 @@ public class MainActivity extends AppCompatActivity {
         } else {
             _main = getString(R.string.subtract) + _main;
             editTextMain.setText(_main);
+        }
+        _updatePreferences();
+    }
+
+    private void _function(String s) {
+        if (layout.equals(LayoutMode.EXTENDED)) {
+            if (editTextMain.getText().toString().equals(getString(R.string.b0))) {
+                editTextMain.setText("");
+            }
+            if (editTextMain.getText().toString().equals(getString(R.string.subtract) + getString(R.string.b0))) {
+                editTextMain.setText(getString(R.string.subtract));
+            }
+            s = editTextMain.getText().toString() + s + getString(R.string.parenthesisL);
+            editTextMain.setText(s);
         }
         _updatePreferences();
     }

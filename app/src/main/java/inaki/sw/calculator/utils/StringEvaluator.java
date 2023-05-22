@@ -4,6 +4,9 @@ import androidx.annotation.NonNull;
 
 import org.mariuszgromada.math.mxparser.Expression;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import inaki.sw.calculator.R;
 
 public class StringEvaluator {
@@ -15,11 +18,35 @@ public class StringEvaluator {
                 .replace(context.getString(R.string.divide), "/")
                 .replace(context.getString(R.string.pow), "^")
                 .replace(context.getString(R.string.percent), "%")
-                .replace(context.getString(R.string.factorial), "!");
+                .replace(context.getString(R.string.factorial), "!")
+                .replace(context.getString(R.string.parenthesisL), "(")
+                .replace(context.getString(R.string.parenthesisR), ")");
+        expression = autoCloseParentheses(expression);
         Expression e = new Expression(expression);
         if (!e.checkSyntax()) {
             throw new SyntaxException();
         }
         return e.calculate();
+    }
+
+    private static String autoCloseParentheses(String expression) {
+        int countL = countSubstring(expression, "\\(");
+        int countR = countSubstring(expression, "\\)");
+        StringBuilder expressionBuilder = new StringBuilder(expression);
+        for (int i = 0; i < countL - countR; i++) {
+            expressionBuilder.append(")");
+        }
+        expression = expressionBuilder.toString();
+        return expression;
+    }
+
+    private static int countSubstring(String string, String regex) {
+        Pattern p = Pattern.compile(regex);
+        Matcher m = p.matcher(string);
+        int count = 0;
+        while (m.find()) {
+            count += 1;
+        }
+        return count;
     }
 }
