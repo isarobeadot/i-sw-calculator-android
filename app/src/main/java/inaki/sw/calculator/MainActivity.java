@@ -353,6 +353,9 @@ public class MainActivity extends AppCompatActivity {
         if (_main.substring(_main.length() - 1).equals(decimal_separator)) {
             editTextMain.setText(_main.substring(0, _main.length() - 1));
         }
+        if (_main.endsWith("E")) {
+            _backSpace();
+        }
         _updatePreferences();
     }
 
