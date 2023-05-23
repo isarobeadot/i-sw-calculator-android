@@ -37,10 +37,11 @@ public class MainActivity extends AppCompatActivity {
     private Button button0, button1, button2, button3, button4, button5, button6, button7, button8, button9, buttonDot;
     private Button buttonAns, buttonClear, buttonQuit;
     private ImageButton buttonBackspace;
-    private Button  buttonEqual;
+    private Button buttonEqual;
     private Button buttonAdd, buttonDivide, buttonMultiply, buttonPlusMinus, buttonPow, buttonSubtract;
     private Button buttonPercent, buttonParenthesisL, buttonParenthesisR, buttonFactorial;
     private Button buttonSin, buttonCos, buttonTan;
+    private Button buttonExp;
     private TextView textViewTop, textViewOp;
     private EditText editTextMain;
     private SharedPreferences preferences;
@@ -175,6 +176,8 @@ public class MainActivity extends AppCompatActivity {
             buttonSin = findViewById(R.id.b_sin);
             buttonCos = findViewById(R.id.b_cos);
             buttonTan = findViewById(R.id.b_tan);
+            buttonExp = findViewById(R.id.b_exp);
+            buttonExp.setText(Html.fromHtml("x10<sup><small>x</small></sup>"));
         } else {
             buttonPlusMinus = findViewById(R.id.b_plusMinus);
         }
@@ -304,6 +307,10 @@ public class MainActivity extends AppCompatActivity {
                 _hapticFeedback();
                 _function(getString(R.string.tan));
             });
+            buttonExp.setOnClickListener(v -> {
+                _hapticFeedback();
+                _exp();
+            });
         } else {
             buttonPlusMinus.setOnClickListener(v -> {
                 _hapticFeedback();
@@ -353,7 +360,7 @@ public class MainActivity extends AppCompatActivity {
         if (_main.endsWith(decimal_separator)) {
             editTextMain.setText(_main.substring(0, _main.length() - 1));
         }
-        if (_main.endsWith("E")) {
+        if (_main.endsWith(getString(R.string.exp))) {
             _backSpace();
         }
         _updatePreferences();
@@ -508,6 +515,18 @@ public class MainActivity extends AppCompatActivity {
             }
             s = editTextMain.getText().toString() + s + getString(R.string.parenthesisL);
             editTextMain.setText(s);
+        }
+        _updatePreferences();
+    }
+
+    private void _exp() {
+        try {
+            String _main = editTextMain.getText().toString();
+            Integer.parseInt(_main.substring(_main.length() - 1));
+            _main = _main + getString(R.string.exp);
+            editTextMain.setText(_main);
+        } catch (NumberFormatException e) {
+            System.out.println();
         }
         _updatePreferences();
     }

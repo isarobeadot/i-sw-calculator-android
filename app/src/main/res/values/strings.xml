@@ -29,6 +29,7 @@
     <string name="b7" translatable="false">7</string>
     <string name="b8" translatable="false">8</string>
     <string name="b9" translatable="false">9</string>
+    <string name="exp" translatable="false">E</string>
     <string name="TextView" translatable="false">TextView</string>
     <string name="about">About…</string>
     <string name="version">Version</string>
