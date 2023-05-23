@@ -350,7 +350,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         _main = editTextMain.getText().toString();
-        if (_main.substring(_main.length() - 1).equals(decimal_separator)) {
+        if (_main.endsWith(decimal_separator)) {
             editTextMain.setText(_main.substring(0, _main.length() - 1));
         }
         if (_main.endsWith("E")) {
