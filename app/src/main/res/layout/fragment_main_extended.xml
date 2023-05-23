@@ -55,7 +55,7 @@
         android:background="@drawable/bg_text_main"
         android:gravity="center|end"
         android:importantForAutofill="no"
-        android:inputType="text"
+        android:inputType="textMultiLine"
         android:paddingLeft="@dimen/text_view_padding"
         android:paddingRight="@dimen/text_view_padding"
         android:text="@string/TextView"

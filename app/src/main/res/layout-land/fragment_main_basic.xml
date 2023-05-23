@@ -56,7 +56,7 @@
         android:enabled="false"
         android:gravity="center|end"
         android:importantForAutofill="no"
-        android:inputType="number"
+        android:inputType="textMultiLine"
         android:paddingLeft="@dimen/text_view_padding"
         android:paddingRight="@dimen/text_view_padding"
         android:text="@string/TextView"
