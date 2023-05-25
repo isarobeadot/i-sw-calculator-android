@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonAdd, buttonDivide, buttonMultiply, buttonPlusMinus, buttonPow, buttonSubtract;
     private Button buttonPercent, buttonParenthesisL, buttonParenthesisR, buttonFactorial;
     private Button buttonSin, buttonCos, buttonTan;
+    private Button buttonLn, buttonLog;
     private Button buttonExp, buttonPi, buttonE;
     private ImageButton buttonMore, buttonLess;
     private TextView textViewTop, textViewOp;
@@ -178,6 +179,8 @@ public class MainActivity extends AppCompatActivity {
             buttonSin = findViewById(R.id.b_sin);
             buttonCos = findViewById(R.id.b_cos);
             buttonTan = findViewById(R.id.b_tan);
+            buttonLn = findViewById(R.id.b_ln);
+            buttonLog = findViewById(R.id.b_log);
             buttonExp = findViewById(R.id.b_exp);
             buttonPi = findViewById(R.id.b_pi);
             buttonE = findViewById(R.id.b_e);
@@ -310,6 +313,14 @@ public class MainActivity extends AppCompatActivity {
                 _hapticFeedback();
                 _function(getString(R.string.tan));
             });
+            buttonLn.setOnClickListener(v -> {
+                _hapticFeedback();
+                _function(getString(R.string.ln));
+            });
+            buttonLog.setOnClickListener(v -> {
+                _hapticFeedback();
+                _function(getString(R.string.log));
+            });
             buttonExp.setOnClickListener(v -> {
                 _hapticFeedback();
                 _exp();
@@ -355,8 +366,15 @@ public class MainActivity extends AppCompatActivity {
             if (layout.equals(LayoutMode.EXTENDED) &&
                     (_main.endsWith(getString(R.string.sin) + getString(R.string.parenthesisL)) ||
                             _main.endsWith(getString(R.string.cos) + getString(R.string.parenthesisL)) ||
-                            _main.endsWith(getString(R.string.tan) + getString(R.string.parenthesisL)))) {
+                            _main.endsWith(getString(R.string.tan) + getString(R.string.parenthesisL)) ||
+                            _main.endsWith(getString(R.string.log) + getString(R.string.parenthesisL)))) {
                 editTextMain.setText(_main.substring(0, _main.length() - 4));
+                if (editTextMain.getText().toString().equals("")) {
+                    editTextMain.setText(getString(R.string.b0));
+                }
+            } else if (layout.equals(LayoutMode.EXTENDED) &&
+                    _main.endsWith(getString(R.string.ln) + getString(R.string.parenthesisL))) {
+                editTextMain.setText(_main.substring(0, _main.length() - 3));
                 if (editTextMain.getText().toString().equals("")) {
                     editTextMain.setText(getString(R.string.b0));
                 }
@@ -552,26 +570,27 @@ public class MainActivity extends AppCompatActivity {
 
     private void _more(boolean showMore) {
         int orientation = getResources().getConfiguration().orientation;
-        if (showMore) {
-            buttonMore.setVisibility(View.GONE);
-            buttonLess.setVisibility(View.VISIBLE);
-            if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                buttonExp.setVisibility(View.GONE);
-                buttonPi.setVisibility(View.VISIBLE);
 
-                buttonPercent.setVisibility(View.GONE);
-                buttonE.setVisibility(View.VISIBLE);
-            }
+        buttonMore.setVisibility(showMore ? View.GONE : View.VISIBLE);
+        buttonLess.setVisibility(showMore ? View.VISIBLE : View.GONE);
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            buttonExp.setVisibility(showMore ? View.GONE : View.VISIBLE);
+            buttonPi.setVisibility(showMore ? View.VISIBLE : View.GONE);
+
+            buttonPercent.setVisibility(showMore ? View.GONE : View.VISIBLE);
+            buttonE.setVisibility(showMore ? View.VISIBLE : View.GONE);
+
+            buttonFactorial.setVisibility(showMore ? View.GONE : View.VISIBLE);
+            buttonLn.setVisibility(showMore ? View.VISIBLE : View.GONE);
+
+            buttonPow.setVisibility(showMore ? View.GONE : View.VISIBLE);
+            buttonLog.setVisibility(showMore ? View.VISIBLE : View.GONE);
         } else {
-            buttonMore.setVisibility(View.VISIBLE);
-            buttonLess.setVisibility(View.GONE);
-            if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                buttonExp.setVisibility(View.VISIBLE);
-                buttonPi.setVisibility(View.GONE);
+            buttonE.setVisibility(showMore ? View.GONE : View.VISIBLE);
+            buttonLn.setVisibility(showMore ? View.VISIBLE : View.GONE);
 
-                buttonPercent.setVisibility(View.VISIBLE);
-                buttonE.setVisibility(View.GONE);
-            }
+            buttonPi.setVisibility(showMore ? View.GONE : View.VISIBLE);
+            buttonLog.setVisibility(showMore ? View.VISIBLE : View.GONE);
         }
     }
 

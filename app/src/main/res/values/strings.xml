@@ -19,6 +19,11 @@
     <string name="sin" translatable="false">sin</string>
     <string name="cos" translatable="false">cos</string>
     <string name="tan" translatable="false">tan</string>
+    <string name="ln" translatable="false">ln</string>
+    <string name="log" translatable="false">log</string>
+    <string name="asin" translatable="false">sin<sup><small>-1</small></sup></string>
+    <string name="acos" translatable="false">cos<sup><small>-1</small></sup></string>
+    <string name="atan" translatable="false">tan<sup><small>-1</small></sup></string>
     <string name="b0" translatable="false">0</string>
     <string name="b1" translatable="false">1</string>
     <string name="b2" translatable="false">2</string>
