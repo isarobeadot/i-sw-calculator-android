@@ -70,26 +70,28 @@
         android:weightSum="5">
 
         <Button
-            android:id="@+id/b_emptyA"
+            android:id="@+id/b_e"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/button_margin"
             android:layout_weight="1"
             android:background="@drawable/bg_button_operator"
-            android:enabled="false"
+            android:text="@string/e"
+            android:textAllCaps="false"
             android:textColor="@color/colorOperationButtonText"
             android:textSize="@dimen/button_number_text_size" />
 
         <Button
-            android:id="@+id/b_emptyB"
+            android:id="@+id/b_pi"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/button_margin"
             android:layout_weight="1"
             android:background="@drawable/bg_button_operator"
-            android:enabled="false"
+            android:text="@string/pi"
+            android:textAllCaps="false"
             android:textColor="@color/colorOperationButtonText"
             android:textSize="@dimen/button_number_text_size" />
 
@@ -141,17 +143,28 @@
         android:orientation="horizontal"
         android:weightSum="5">
 
-        <Button
-            android:id="@+id/b_emptyF"
+        <ImageButton
+            android:id="@+id/b_more"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/button_margin"
             android:layout_weight="1"
             android:background="@drawable/bg_button_operator"
-            android:enabled="false"
-            android:textColor="@color/colorOperationButtonText"
-            android:textSize="@dimen/button_number_text_size" />
+            android:contentDescription="@string/backspace"
+            app:srcCompat="@drawable/baseline_add_circle_outline" />
+
+        <ImageButton
+            android:id="@+id/b_less"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/button_margin"
+            android:layout_weight="1"
+            android:background="@drawable/bg_button_operator"
+            android:contentDescription="@string/backspace"
+            android:visibility="gone"
+            app:srcCompat="@drawable/baseline_add_circle" />
 
         <Button
             android:id="@+id/b_exp"

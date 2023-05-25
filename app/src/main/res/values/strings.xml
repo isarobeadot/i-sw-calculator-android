@@ -8,9 +8,9 @@
     <string name="equal" translatable="false">=</string>
     <string name="add" translatable="false">+</string>
     <string name="subtract" translatable="false">−</string>
-    <string name="multiply" translatable="false">x</string>
-    <string name="divide" translatable="false">/</string>
-    <string name="pow" translatable="false">^</string>
+    <string name="multiply" translatable="false">&#215;</string>
+    <string name="divide" translatable="false">&#247;</string>
+    <string name="pow" translatable="false">x<sup><small>y</small></sup></string>
     <string name="plus_minus" translatable="false">+/-</string>
     <string name="percent" translatable="false">%</string>
     <string name="parenthesisL" translatable="false">(</string>
@@ -29,7 +29,9 @@
     <string name="b7" translatable="false">7</string>
     <string name="b8" translatable="false">8</string>
     <string name="b9" translatable="false">9</string>
-    <string name="exp" translatable="false">E</string>
+    <string name="exp" translatable="false">&#215;10<sup><small>x</small></sup></string>
+    <string name="pi" translatable="false">&#960;</string>
+    <string name="e" translatable="false">e</string>
     <string name="TextView" translatable="false">TextView</string>
     <string name="about">About…</string>
     <string name="version">Version</string>

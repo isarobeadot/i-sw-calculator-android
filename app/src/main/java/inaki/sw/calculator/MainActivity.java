@@ -5,6 +5,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.VibrationEffect;
@@ -41,7 +42,8 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonAdd, buttonDivide, buttonMultiply, buttonPlusMinus, buttonPow, buttonSubtract;
     private Button buttonPercent, buttonParenthesisL, buttonParenthesisR, buttonFactorial;
     private Button buttonSin, buttonCos, buttonTan;
-    private Button buttonExp;
+    private Button buttonExp, buttonPi, buttonE;
+    private ImageButton buttonMore, buttonLess;
     private TextView textViewTop, textViewOp;
     private EditText editTextMain;
     private SharedPreferences preferences;
@@ -177,7 +179,10 @@ public class MainActivity extends AppCompatActivity {
             buttonCos = findViewById(R.id.b_cos);
             buttonTan = findViewById(R.id.b_tan);
             buttonExp = findViewById(R.id.b_exp);
-            buttonExp.setText(Html.fromHtml("x10<sup><small>x</small></sup>"));
+            buttonPi = findViewById(R.id.b_pi);
+            buttonE = findViewById(R.id.b_e);
+            buttonMore = findViewById(R.id.b_more);
+            buttonLess = findViewById(R.id.b_less);
         } else {
             buttonPlusMinus = findViewById(R.id.b_plusMinus);
         }
@@ -185,8 +190,6 @@ public class MainActivity extends AppCompatActivity {
         buttonDot.setText(decimal_separator);
         // Answer button should be disabled at beginning
         buttonAns.setEnabled(ans != 0D);
-        // Power
-        buttonPow.setText(Html.fromHtml("x<sup><small>y</small></sup>"));
         // Vibrator
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
     }
@@ -271,7 +274,7 @@ public class MainActivity extends AppCompatActivity {
         });
         buttonPow.setOnClickListener(v -> {
             _hapticFeedback();
-            _operator(getString(R.string.pow));
+            _operator("^");
         });
         buttonSubtract.setOnClickListener(v -> {
             _hapticFeedback();
@@ -310,6 +313,22 @@ public class MainActivity extends AppCompatActivity {
             buttonExp.setOnClickListener(v -> {
                 _hapticFeedback();
                 _exp();
+            });
+            buttonPi.setOnClickListener(v -> {
+                _hapticFeedback();
+                _operator(getString(R.string.pi));
+            });
+            buttonE.setOnClickListener(v -> {
+                _hapticFeedback();
+                _operator(getString(R.string.e));
+            });
+            buttonMore.setOnClickListener(v -> {
+                _hapticFeedback();
+                _more(true);
+            });
+            buttonLess.setOnClickListener(v -> {
+                _hapticFeedback();
+                _more(false);
             });
         } else {
             buttonPlusMinus.setOnClickListener(v -> {
@@ -523,12 +542,37 @@ public class MainActivity extends AppCompatActivity {
         try {
             String _main = editTextMain.getText().toString();
             Integer.parseInt(_main.substring(_main.length() - 1));
-            _main = _main + getString(R.string.exp);
+            _main = _main + "E";
             editTextMain.setText(_main);
         } catch (NumberFormatException e) {
             System.out.println();
         }
         _updatePreferences();
+    }
+
+    private void _more(boolean showMore) {
+        int orientation = getResources().getConfiguration().orientation;
+        if (showMore) {
+            buttonMore.setVisibility(View.GONE);
+            buttonLess.setVisibility(View.VISIBLE);
+            if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                buttonExp.setVisibility(View.GONE);
+                buttonPi.setVisibility(View.VISIBLE);
+
+                buttonPercent.setVisibility(View.GONE);
+                buttonE.setVisibility(View.VISIBLE);
+            }
+        } else {
+            buttonMore.setVisibility(View.VISIBLE);
+            buttonLess.setVisibility(View.GONE);
+            if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                buttonExp.setVisibility(View.VISIBLE);
+                buttonPi.setVisibility(View.GONE);
+
+                buttonPercent.setVisibility(View.VISIBLE);
+                buttonE.setVisibility(View.GONE);
+            }
+        }
     }
 
     private void _quit() {

@@ -16,7 +16,6 @@ public class StringEvaluator {
                 .replace(context.getString(R.string.subtract), "-")
                 .replace(context.getString(R.string.multiply), "*")
                 .replace(context.getString(R.string.divide), "/")
-                .replace(context.getString(R.string.pow), "^")
                 .replace(context.getString(R.string.percent), "%")
                 .replace(context.getString(R.string.factorial), "!")
                 .replace(context.getString(R.string.parenthesisL), "(")
