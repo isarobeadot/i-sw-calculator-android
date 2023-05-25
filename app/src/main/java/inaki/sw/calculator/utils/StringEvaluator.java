@@ -20,7 +20,8 @@ public class StringEvaluator {
                 .replace(context.getString(R.string.factorial), "!")
                 .replace(context.getString(R.string.parenthesisL), "(")
                 .replace(context.getString(R.string.parenthesisR), ")")
-                .replace(context.getString(R.string.log), "lg");
+                .replace(context.getString(R.string.log), "lg")
+                .replace(context.getString(R.string.asin), "asin");
         expression = autoCloseParentheses(expression);
         Expression e = new Expression(expression);
         if (!e.checkSyntax()) {

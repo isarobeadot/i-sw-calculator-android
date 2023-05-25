@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonAdd, buttonDivide, buttonMultiply, buttonPlusMinus, buttonPow, buttonSubtract;
     private Button buttonPercent, buttonParenthesisL, buttonParenthesisR, buttonFactorial;
     private Button buttonSin, buttonCos, buttonTan;
+    private Button buttonASin, buttonACos, buttonATan;
     private Button buttonLn, buttonLog;
     private Button buttonExp, buttonPi, buttonE;
     private ImageButton buttonMore, buttonLess;
@@ -179,6 +180,7 @@ public class MainActivity extends AppCompatActivity {
             buttonSin = findViewById(R.id.b_sin);
             buttonCos = findViewById(R.id.b_cos);
             buttonTan = findViewById(R.id.b_tan);
+            buttonASin = findViewById(R.id.b_asin);
             buttonLn = findViewById(R.id.b_ln);
             buttonLog = findViewById(R.id.b_log);
             buttonExp = findViewById(R.id.b_exp);
@@ -313,6 +315,10 @@ public class MainActivity extends AppCompatActivity {
                 _hapticFeedback();
                 _function(getString(R.string.tan));
             });
+            buttonASin.setOnClickListener(v -> {
+                _hapticFeedback();
+                _function(getString(R.string.asin));
+            });
             buttonLn.setOnClickListener(v -> {
                 _hapticFeedback();
                 _function(getString(R.string.ln));
@@ -363,18 +369,20 @@ public class MainActivity extends AppCompatActivity {
         String _main = editTextMain.getText().toString();
         int limit = _main.startsWith(getString(R.string.subtract)) ? 2 : 1;
         if (_main.length() > limit) {
-            if (layout.equals(LayoutMode.EXTENDED) &&
-                    (_main.endsWith(getString(R.string.sin) + getString(R.string.parenthesisL)) ||
-                            _main.endsWith(getString(R.string.cos) + getString(R.string.parenthesisL)) ||
-                            _main.endsWith(getString(R.string.tan) + getString(R.string.parenthesisL)) ||
-                            _main.endsWith(getString(R.string.log) + getString(R.string.parenthesisL)))) {
-                editTextMain.setText(_main.substring(0, _main.length() - 4));
-                if (editTextMain.getText().toString().equals("")) {
-                    editTextMain.setText(getString(R.string.b0));
+            if (layout.equals(LayoutMode.EXTENDED)) {
+                if (_main.endsWith(getString(R.string.sin) + getString(R.string.parenthesisL))) {
+                    editTextMain.setText(_main.substring(0, _main.length() - getString(R.string.sin).length() - 1));
+                } else if (_main.endsWith(getString(R.string.cos) + getString(R.string.parenthesisL))) {
+                    editTextMain.setText(_main.substring(0, _main.length() - getString(R.string.cos).length() - 1));
+                } else if (_main.endsWith(getString(R.string.tan) + getString(R.string.parenthesisL))) {
+                    editTextMain.setText(_main.substring(0, _main.length() - getString(R.string.tan).length() - 1));
+                } else if (_main.endsWith(getString(R.string.asin) + getString(R.string.parenthesisL))) {
+                    editTextMain.setText(_main.substring(0, _main.length() - getString(R.string.asin).length() - 1));
+                } else if (_main.endsWith(getString(R.string.ln) + getString(R.string.parenthesisL))) {
+                    editTextMain.setText(_main.substring(0, _main.length() - getString(R.string.ln).length() - 1));
+                } else if (_main.endsWith(getString(R.string.log) + getString(R.string.parenthesisL))) {
+                    editTextMain.setText(_main.substring(0, _main.length() - getString(R.string.log).length() - 1));
                 }
-            } else if (layout.equals(LayoutMode.EXTENDED) &&
-                    _main.endsWith(getString(R.string.ln) + getString(R.string.parenthesisL))) {
-                editTextMain.setText(_main.substring(0, _main.length() - 3));
                 if (editTextMain.getText().toString().equals("")) {
                     editTextMain.setText(getString(R.string.b0));
                 }
@@ -573,6 +581,10 @@ public class MainActivity extends AppCompatActivity {
 
         buttonMore.setVisibility(showMore ? View.GONE : View.VISIBLE);
         buttonLess.setVisibility(showMore ? View.VISIBLE : View.GONE);
+
+        buttonSin.setVisibility(showMore ? View.GONE : View.VISIBLE);
+        buttonASin.setVisibility(showMore ? View.VISIBLE : View.GONE);
+
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             buttonExp.setVisibility(showMore ? View.GONE : View.VISIBLE);
             buttonPi.setVisibility(showMore ? View.VISIBLE : View.GONE);
