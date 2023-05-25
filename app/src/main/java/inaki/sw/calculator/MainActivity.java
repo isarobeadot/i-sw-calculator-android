@@ -580,13 +580,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void _exp() {
+        String _main = editTextMain.getText().toString();
         try {
-            String _main = editTextMain.getText().toString();
             Integer.parseInt(_main.substring(_main.length() - 1));
-            _main = _main + "E";
-            editTextMain.setText(_main);
+            buttonMultiply.performClick();
+            button1.performClick();
+            button0.performClick();
+            buttonPow.performClick();
         } catch (NumberFormatException e) {
-            System.out.println();
+           if (_main.endsWith(getString(R.string.e)) || _main.endsWith(getString(R.string.pi))) {
+               buttonMultiply.performClick();
+               button1.performClick();
+               button0.performClick();
+               buttonPow.performClick();
+           }
         }
         _updatePreferences();
     }
