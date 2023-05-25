@@ -9,7 +9,7 @@
     <color name="colorNumberButtonBackground">#555</color>
     <color name="colorNumberButtonBackgroundPressed">#666</color>
     <color name="colorNumberButtonText">#AFA</color>
-    <color name="colorOperationButtonBackground">#CCC</color>
+    <color name="colorOperationButtonBackground">#BBB</color>
     <color name="colorOperationButtonBackgroundPressed">#DDD</color>
     <color name="colorOperationButtonText">#252525</color>
     <color name="colorActionButtonBackground">#555</color>

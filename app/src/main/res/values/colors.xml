@@ -10,7 +10,7 @@
     <color name="colorNumberButtonBackgroundPressed">#191</color>
     <color name="colorNumberButtonText">#FFF</color>
     <color name="colorOperationButtonBackground">#AFA</color>
-    <color name="colorOperationButtonBackgroundPressed">#BFB</color>
+    <color name="colorOperationButtonBackgroundPressed">#CFC</color>
     <color name="colorOperationButtonText">#252525</color>
     <color name="colorActionButtonBackground">#080</color>
     <color name="colorActionButtonText">#FFF</color>
