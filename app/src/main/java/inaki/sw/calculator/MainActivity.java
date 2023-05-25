@@ -505,9 +505,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void _parseAnswerToMain() {
         if (Double.toString(ans).contains("E")) {
-            editTextMain.setText(scientificFormat.format(ans));
+            _number(scientificFormat.format(ans));
         } else {
-            editTextMain.setText(decimalFormat.format(ans));
+            _number(decimalFormat.format(ans));
         }
     }
 
