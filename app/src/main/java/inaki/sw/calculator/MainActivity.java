@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonAns, buttonClear, buttonQuit;
     private ImageButton buttonBackspace;
     private Button buttonEqual;
-    private Button buttonAdd, buttonDivide, buttonMultiply, buttonPlusMinus, buttonPow, buttonSubtract;
+    private Button buttonAdd, buttonDivide, buttonMultiply, buttonPlusMinus, buttonPow, buttonSubtract, buttonSqrt;
     private Button buttonPercent, buttonParenthesisL, buttonParenthesisR, buttonFactorial;
     private Button buttonSin, buttonCos, buttonTan;
     private Button buttonASin, buttonACos, buttonATan;
@@ -172,6 +172,7 @@ public class MainActivity extends AppCompatActivity {
         editTextMain.setEnabled(false); // TODO: enable with extended layout
         // Specific buttons of each layout
         if (layout.equals(LayoutMode.EXTENDED)) {
+            buttonSqrt = findViewById(R.id.b_sqrt);
             buttonPercent = findViewById(R.id.b_percent);
             buttonParenthesisL = findViewById(R.id.b_parenthesisL);
             buttonParenthesisR = findViewById(R.id.b_parenthesisR);
@@ -288,6 +289,10 @@ public class MainActivity extends AppCompatActivity {
         });
         // Specific buttons of each layout
         if (layout.equals(LayoutMode.EXTENDED)) {
+            buttonSqrt.setOnClickListener(v -> {
+                _hapticFeedback();
+                _function(getString(R.string.sqrt));
+            });
             buttonPercent.setOnClickListener(v -> {
                 _hapticFeedback();
                 _operator(getString(R.string.percent));
@@ -379,7 +384,9 @@ public class MainActivity extends AppCompatActivity {
         int limit = _main.startsWith(getString(R.string.subtract)) ? 2 : 1;
         if (_main.length() > limit) {
             if (layout.equals(LayoutMode.EXTENDED)) {
-                if (_main.endsWith(getString(R.string.sin) + getString(R.string.parenthesisL))) {
+                if (_main.endsWith(getString(R.string.sqrt) + getString(R.string.parenthesisL))) {
+                    editTextMain.setText(_main.substring(0, _main.length() - getString(R.string.sqrt).length() - 1));
+                } else if (_main.endsWith(getString(R.string.sin) + getString(R.string.parenthesisL))) {
                     editTextMain.setText(_main.substring(0, _main.length() - getString(R.string.sin).length() - 1));
                 } else if (_main.endsWith(getString(R.string.cos) + getString(R.string.parenthesisL))) {
                     editTextMain.setText(_main.substring(0, _main.length() - getString(R.string.cos).length() - 1));
@@ -614,16 +621,16 @@ public class MainActivity extends AppCompatActivity {
         buttonATan.setVisibility(showMore ? View.VISIBLE : View.GONE);
 
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            buttonExp.setVisibility(showMore ? View.GONE : View.VISIBLE);
+            buttonSqrt.setVisibility(showMore ? View.GONE : View.VISIBLE);
             buttonPi.setVisibility(showMore ? View.VISIBLE : View.GONE);
 
-            buttonPercent.setVisibility(showMore ? View.GONE : View.VISIBLE);
+            buttonPow.setVisibility(showMore ? View.GONE : View.VISIBLE);
             buttonE.setVisibility(showMore ? View.VISIBLE : View.GONE);
 
             buttonFactorial.setVisibility(showMore ? View.GONE : View.VISIBLE);
             buttonLn.setVisibility(showMore ? View.VISIBLE : View.GONE);
 
-            buttonPow.setVisibility(showMore ? View.GONE : View.VISIBLE);
+            buttonPercent.setVisibility(showMore ? View.GONE : View.VISIBLE);
             buttonLog.setVisibility(showMore ? View.VISIBLE : View.GONE);
         } else {
             buttonE.setVisibility(showMore ? View.GONE : View.VISIBLE);

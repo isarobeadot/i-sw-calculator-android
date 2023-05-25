@@ -222,14 +222,14 @@
             android:visibility="gone" />
 
         <Button
-            android:id="@+id/b_pow"
+            android:id="@+id/b_percent"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/button_margin"
             android:layout_weight="1"
             android:background="@drawable/bg_button_operator"
-            android:text="@string/pow"
+            android:text="@string/percent"
             android:textAllCaps="false"
             android:textColor="@color/colorOperationButtonText"
             android:textSize="@dimen/button_number_text_size" />
@@ -345,14 +345,14 @@
             android:visibility="gone" />
 
         <Button
-            android:id="@+id/b_percent"
+            android:id="@+id/b_pow"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/button_margin"
             android:layout_weight="1"
             android:background="@drawable/bg_button_operator"
-            android:text="@string/percent"
+            android:text="@string/pow"
             android:textAllCaps="false"
             android:textColor="@color/colorOperationButtonText"
             android:textSize="@dimen/button_number_text_size" />
@@ -463,14 +463,14 @@
             app:srcCompat="@drawable/baseline_add_circle" />
 
         <Button
-            android:id="@+id/b_exp"
+            android:id="@+id/b_sqrt"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/button_margin"
             android:layout_weight="1"
             android:background="@drawable/bg_button_operator"
-            android:text="@string/exp"
+            android:text="@string/sqrt"
             android:textAllCaps="false"
             android:textColor="@color/colorOperationButtonText"
             android:textSize="@dimen/button_number_text_size" />
@@ -488,18 +488,6 @@
             android:textColor="@color/colorOperationButtonText"
             android:textSize="@dimen/button_number_text_size"
             android:visibility="gone" />
-
-        <Button
-            android:id="@+id/b_empty"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/button_margin"
-            android:layout_weight="1"
-            android:background="@drawable/bg_button_number"
-            android:enabled="false"
-            android:textColor="@color/colorNumberButtonBackground"
-            android:textSize="@dimen/button_number_text_size" />
 
         <Button
             android:id="@+id/b_0"
@@ -522,6 +510,19 @@
             android:layout_weight="1"
             android:background="@drawable/bg_button_number"
             android:text="@string/dot"
+            android:textColor="@color/colorNumberButtonText"
+            android:textSize="@dimen/button_number_text_size" />
+
+        <Button
+            android:id="@+id/b_exp"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/button_margin"
+            android:layout_weight="1"
+            android:background="@drawable/bg_button_number"
+            android:text="@string/exp"
+            android:textAllCaps="false"
             android:textColor="@color/colorNumberButtonText"
             android:textSize="@dimen/button_number_text_size" />
 

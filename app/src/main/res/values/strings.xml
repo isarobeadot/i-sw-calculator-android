@@ -11,6 +11,7 @@
     <string name="multiply" translatable="false">&#215;</string>
     <string name="divide" translatable="false">&#247;</string>
     <string name="pow" translatable="false">x<sup><small>y</small></sup></string>
+    <string name="sqrt" translatable="false">&#8730;</string>
     <string name="plus_minus" translatable="false">+/-</string>
     <string name="percent" translatable="false">%</string>
     <string name="parenthesisL" translatable="false">(</string>

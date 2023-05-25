@@ -20,6 +20,8 @@ public class StringEvaluator {
                 .replace(context.getString(R.string.factorial), "!")
                 .replace(context.getString(R.string.parenthesisL), "(")
                 .replace(context.getString(R.string.parenthesisR), ")")
+                .replace(context.getString(R.string.sqrt), "sqrt")
+                .replace(context.getString(R.string.ln), "ln")
                 .replace(context.getString(R.string.log), "lg")
                 .replace(context.getString(R.string.asin), "asin")
                 .replace(context.getString(R.string.acos), "acos")
