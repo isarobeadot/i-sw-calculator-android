@@ -10,7 +10,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
-import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -181,6 +180,7 @@ public class MainActivity extends AppCompatActivity {
             buttonCos = findViewById(R.id.b_cos);
             buttonTan = findViewById(R.id.b_tan);
             buttonASin = findViewById(R.id.b_asin);
+            buttonACos = findViewById(R.id.b_acos);
             buttonLn = findViewById(R.id.b_ln);
             buttonLog = findViewById(R.id.b_log);
             buttonExp = findViewById(R.id.b_exp);
@@ -319,6 +319,10 @@ public class MainActivity extends AppCompatActivity {
                 _hapticFeedback();
                 _function(getString(R.string.asin));
             });
+            buttonACos.setOnClickListener(v -> {
+                _hapticFeedback();
+                _function(getString(R.string.acos));
+            });
             buttonLn.setOnClickListener(v -> {
                 _hapticFeedback();
                 _function(getString(R.string.ln));
@@ -378,10 +382,14 @@ public class MainActivity extends AppCompatActivity {
                     editTextMain.setText(_main.substring(0, _main.length() - getString(R.string.tan).length() - 1));
                 } else if (_main.endsWith(getString(R.string.asin) + getString(R.string.parenthesisL))) {
                     editTextMain.setText(_main.substring(0, _main.length() - getString(R.string.asin).length() - 1));
+                } else if (_main.endsWith(getString(R.string.acos) + getString(R.string.parenthesisL))) {
+                    editTextMain.setText(_main.substring(0, _main.length() - getString(R.string.acos).length() - 1));
                 } else if (_main.endsWith(getString(R.string.ln) + getString(R.string.parenthesisL))) {
                     editTextMain.setText(_main.substring(0, _main.length() - getString(R.string.ln).length() - 1));
                 } else if (_main.endsWith(getString(R.string.log) + getString(R.string.parenthesisL))) {
                     editTextMain.setText(_main.substring(0, _main.length() - getString(R.string.log).length() - 1));
+                } else {
+                    editTextMain.setText(_main.substring(0, _main.length() - 1));
                 }
                 if (editTextMain.getText().toString().equals("")) {
                     editTextMain.setText(getString(R.string.b0));
@@ -584,6 +592,9 @@ public class MainActivity extends AppCompatActivity {
 
         buttonSin.setVisibility(showMore ? View.GONE : View.VISIBLE);
         buttonASin.setVisibility(showMore ? View.VISIBLE : View.GONE);
+
+        buttonCos.setVisibility(showMore ? View.GONE : View.VISIBLE);
+        buttonACos.setVisibility(showMore ? View.VISIBLE : View.GONE);
 
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             buttonExp.setVisibility(showMore ? View.GONE : View.VISIBLE);

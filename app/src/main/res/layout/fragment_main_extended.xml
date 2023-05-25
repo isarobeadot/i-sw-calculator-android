@@ -164,6 +164,20 @@
             android:textSize="@dimen/button_number_text_size" />
 
         <Button
+            android:id="@+id/b_acos"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/button_margin"
+            android:layout_weight="1"
+            android:background="@drawable/bg_button_operator"
+            android:text="@string/acos"
+            android:textAllCaps="false"
+            android:textColor="@color/colorOperationButtonText"
+            android:textSize="@dimen/button_number_text_size"
+            android:visibility="gone" />
+
+        <Button
             android:id="@+id/b_tan"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
