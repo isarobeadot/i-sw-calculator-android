@@ -181,6 +181,7 @@ public class MainActivity extends AppCompatActivity {
             buttonTan = findViewById(R.id.b_tan);
             buttonASin = findViewById(R.id.b_asin);
             buttonACos = findViewById(R.id.b_acos);
+            buttonATan = findViewById(R.id.b_atan);
             buttonLn = findViewById(R.id.b_ln);
             buttonLog = findViewById(R.id.b_log);
             buttonExp = findViewById(R.id.b_exp);
@@ -323,6 +324,10 @@ public class MainActivity extends AppCompatActivity {
                 _hapticFeedback();
                 _function(getString(R.string.acos));
             });
+            buttonATan.setOnClickListener(v -> {
+                _hapticFeedback();
+                _function(getString(R.string.atan));
+            });
             buttonLn.setOnClickListener(v -> {
                 _hapticFeedback();
                 _function(getString(R.string.ln));
@@ -384,6 +389,8 @@ public class MainActivity extends AppCompatActivity {
                     editTextMain.setText(_main.substring(0, _main.length() - getString(R.string.asin).length() - 1));
                 } else if (_main.endsWith(getString(R.string.acos) + getString(R.string.parenthesisL))) {
                     editTextMain.setText(_main.substring(0, _main.length() - getString(R.string.acos).length() - 1));
+                } else if (_main.endsWith(getString(R.string.atan) + getString(R.string.parenthesisL))) {
+                    editTextMain.setText(_main.substring(0, _main.length() - getString(R.string.atan).length() - 1));
                 } else if (_main.endsWith(getString(R.string.ln) + getString(R.string.parenthesisL))) {
                     editTextMain.setText(_main.substring(0, _main.length() - getString(R.string.ln).length() - 1));
                 } else if (_main.endsWith(getString(R.string.log) + getString(R.string.parenthesisL))) {
@@ -595,6 +602,9 @@ public class MainActivity extends AppCompatActivity {
 
         buttonCos.setVisibility(showMore ? View.GONE : View.VISIBLE);
         buttonACos.setVisibility(showMore ? View.VISIBLE : View.GONE);
+
+        buttonTan.setVisibility(showMore ? View.GONE : View.VISIBLE);
+        buttonATan.setVisibility(showMore ? View.VISIBLE : View.GONE);
 
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             buttonExp.setVisibility(showMore ? View.GONE : View.VISIBLE);

@@ -22,7 +22,8 @@ public class StringEvaluator {
                 .replace(context.getString(R.string.parenthesisR), ")")
                 .replace(context.getString(R.string.log), "lg")
                 .replace(context.getString(R.string.asin), "asin")
-                .replace(context.getString(R.string.acos), "acos");
+                .replace(context.getString(R.string.acos), "acos")
+                .replace(context.getString(R.string.atan), "atan");
         expression = autoCloseParentheses(expression);
         Expression e = new Expression(expression);
         if (!e.checkSyntax()) {
