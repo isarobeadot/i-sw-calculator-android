@@ -12,5 +12,5 @@
     <string name="ans_copied">Erantzuna arbelera kopiatu da</string>
     <string name="basic">Modu sinplea</string>
     <string name="extended">Modu aurreratua</string>
-    <string name="syntaxError">Error de sintaxis</string>
+    <string name="syntaxError">Sintaxi errorea</string>
 </resources>

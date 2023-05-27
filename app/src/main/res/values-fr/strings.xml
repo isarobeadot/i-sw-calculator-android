@@ -11,6 +11,6 @@
     <string name="copy_ans">Copier la réponse</string>
     <string name="ans_copied">Réponse copiée dans le presse-papiers</string>
     <string name="basic">Modo siple</string>
-    <string name="extended">Modo extendido</string>
-    <string name="syntaxError">Sintaxi errorea</string>
+    <string name="extended">Mode étendu</string>
+    <string name="syntaxError">Error de sintaxis</string>
 </resources>
