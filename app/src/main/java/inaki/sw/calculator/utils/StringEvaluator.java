@@ -10,6 +10,10 @@ import java.util.regex.Pattern;
 import inaki.sw.calculator.R;
 
 public class StringEvaluator {
+
+    private StringEvaluator() {
+    }
+
     public static double evaluate(android.content.Context context, @NonNull String expression, String decimalSeparator) {
         expression = expression.replace(decimalSeparator, ".")
                 .replace(context.getString(R.string.add), "+")

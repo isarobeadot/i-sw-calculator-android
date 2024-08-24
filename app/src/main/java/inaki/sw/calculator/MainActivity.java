@@ -34,27 +34,78 @@ import inaki.sw.calculator.utils.SyntaxException;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button button0, button1, button2, button3, button4, button5, button6, button7, button8, button9, buttonDot;
-    private Button buttonAns, buttonClear, buttonQuit;
+    private Button button0;
+    private Button button1;
+    private Button button2;
+    private Button button3;
+    private Button button4;
+    private Button button5;
+    private Button button6;
+    private Button button7;
+    private Button button8;
+    private Button button9;
+    private Button buttonDot;
+
+    private Button buttonAns;
+    private Button buttonClear;
+    private Button buttonQuit;
+
     private ImageButton buttonBackspace;
+
     private Button buttonEqual;
-    private Button buttonAdd, buttonDivide, buttonMultiply, buttonPlusMinus, buttonPow, buttonSubtract, buttonSqrt;
-    private Button buttonPercent, buttonParenthesisL, buttonParenthesisR, buttonFactorial;
-    private Button buttonSin, buttonCos, buttonTan;
-    private Button buttonASin, buttonACos, buttonATan;
-    private Button buttonLn, buttonLog;
-    private Button buttonExp, buttonPi, buttonE;
-    private ImageButton buttonMore, buttonLess;
-    private TextView textViewTop, textViewOp;
+
+    private Button buttonAdd;
+    private Button buttonDivide;
+    private Button buttonMultiply;
+    private Button buttonPlusMinus;
+    private Button buttonPow;
+    private Button buttonSubtract;
+    private Button buttonSqrt;
+
+    private Button buttonPercent;
+    private Button buttonParenthesisL;
+    private Button buttonParenthesisR;
+    private Button buttonFactorial;
+
+    private Button buttonSin;
+    private Button buttonCos;
+    private Button buttonTan;
+
+    private Button buttonASin;
+    private Button buttonACos;
+    private Button buttonATan;
+
+    private Button buttonLn;
+    private Button buttonLog;
+
+    private Button buttonExp;
+    private Button buttonPi;
+    private Button buttonE;
+
+    private ImageButton buttonMore;
+    private ImageButton buttonLess;
+
+    private TextView textViewTop;
+    private TextView textViewOp;
+
     private EditText editTextMain;
+
     private SharedPreferences preferences;
+
     private double ans = 0D;
+
     private boolean equalPressed = false;
+
     private final Locale locale = Locale.getDefault();
-    private final String decimal_separator = String.format(locale, "%f", 0.0).replace("0", "");
+
+    private final String decimalSeparator = String.format(locale, "%f", 0.0).replace("0", "");
+
     private final DecimalFormat decimalFormat = new DecimalFormat("#0.####################");
+
     private final DecimalFormat scientificFormat = new DecimalFormat("0.0#################E0");
+
     private Vibrator vibrator;
+
     private LayoutMode layout = LayoutMode.BASIC;
 
     @Override
@@ -95,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         } else if (id == R.id.action_copy_ans) {
             CharSequence text = textViewTop.getText();
-            if (text == null || text.toString().equals("")) {
+            if (text == null || text.toString().isEmpty()) {
                 return true;
             }
 
@@ -115,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
             textViewTop.setText("");
             textViewOp.setText("");
             editTextMain.setText(R.string.b0);
-            _updatePreferences();
+            updatePreferences();
             initialize();
             addListeners();
         }
@@ -125,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        _quit();
+        quitPressed();
     }
 
     private void initialize() {
@@ -199,7 +250,7 @@ public class MainActivity extends AppCompatActivity {
             buttonPlusMinus = findViewById(R.id.b_plusMinus);
         }
         // Localize decimal separator
-        buttonDot.setText(decimal_separator);
+        buttonDot.setText(decimalSeparator);
         // Answer button should be disabled at beginning
         buttonAns.setEnabled(ans != 0D);
         // Vibrator
@@ -208,267 +259,267 @@ public class MainActivity extends AppCompatActivity {
 
     private void addListeners() {
         button0.setOnClickListener(v -> {
-            _hapticFeedback();
-            _number(getString(R.string.b0));
+            hapticFeedbackCustom();
+            numberPressed(getString(R.string.b0));
         });
         button1.setOnClickListener(v -> {
-            _hapticFeedback();
-            _number(getString(R.string.b1));
+            hapticFeedbackCustom();
+            numberPressed(getString(R.string.b1));
         });
         button2.setOnClickListener(v -> {
-            _hapticFeedback();
-            _number(getString(R.string.b2));
+            hapticFeedbackCustom();
+            numberPressed(getString(R.string.b2));
         });
         button3.setOnClickListener(v -> {
-            _hapticFeedback();
-            _number(getString(R.string.b3));
+            hapticFeedbackCustom();
+            numberPressed(getString(R.string.b3));
         });
         button4.setOnClickListener(v -> {
-            _hapticFeedback();
-            _number(getString(R.string.b4));
+            hapticFeedbackCustom();
+            numberPressed(getString(R.string.b4));
         });
         button5.setOnClickListener(v -> {
-            _hapticFeedback();
-            _number(getString(R.string.b5));
+            hapticFeedbackCustom();
+            numberPressed(getString(R.string.b5));
         });
         button6.setOnClickListener(v -> {
-            _hapticFeedback();
-            _number(getString(R.string.b6));
+            hapticFeedbackCustom();
+            numberPressed(getString(R.string.b6));
         });
         button7.setOnClickListener(v -> {
-            _hapticFeedback();
-            _number(getString(R.string.b7));
+            hapticFeedbackCustom();
+            numberPressed(getString(R.string.b7));
         });
         button8.setOnClickListener(v -> {
-            _hapticFeedback();
-            _number(getString(R.string.b8));
+            hapticFeedbackCustom();
+            numberPressed(getString(R.string.b8));
         });
         button9.setOnClickListener(v -> {
-            _hapticFeedback();
-            _number(getString(R.string.b9));
+            hapticFeedbackCustom();
+            numberPressed(getString(R.string.b9));
         });
         buttonAns.setOnClickListener(v -> {
-            _hapticFeedback();
-            _ans();
+            hapticFeedbackCustom();
+            parseAnswer();
         });
         buttonClear.setOnClickListener(v -> {
-            _hapticFeedback();
-            _clear();
+            hapticFeedbackCustom();
+            clearPressed();
         });
         buttonQuit.setOnClickListener(v -> {
-            _hapticFeedback();
-            _quit();
+            hapticFeedbackCustom();
+            quitPressed();
         });
         buttonDot.setOnClickListener(v -> {
-            _hapticFeedback();
-            _dot();
+            hapticFeedbackCustom();
+            dotPressed();
         });
         buttonEqual.setOnClickListener(v -> {
-            _hapticFeedback();
-            _equal();
+            hapticFeedbackCustom();
+            equalPressed();
         });
         buttonAdd.setOnClickListener(v -> {
-            _hapticFeedback();
-            _operator(getString(R.string.add));
+            hapticFeedbackCustom();
+            operatorPressed(getString(R.string.add));
         });
         buttonBackspace.setOnClickListener(v -> {
-            _hapticFeedback();
-            _backSpace();
+            hapticFeedbackCustom();
+            backSpacePressed();
         });
-        buttonBackspace.setOnLongClickListener(v -> _backSpaceLong());
+        buttonBackspace.setOnLongClickListener(v -> backSpaceLongPressed());
         buttonDivide.setOnClickListener(v -> {
-            _hapticFeedback();
-            _operator(getString(R.string.divide));
+            hapticFeedbackCustom();
+            operatorPressed(getString(R.string.divide));
         });
         buttonMultiply.setOnClickListener(v -> {
-            _hapticFeedback();
-            _operator(getString(R.string.multiply));
+            hapticFeedbackCustom();
+            operatorPressed(getString(R.string.multiply));
         });
         buttonPow.setOnClickListener(v -> {
-            _hapticFeedback();
-            _operator("^");
+            hapticFeedbackCustom();
+            operatorPressed("^");
         });
         buttonSubtract.setOnClickListener(v -> {
-            _hapticFeedback();
-            _operator(getString(R.string.subtract));
+            hapticFeedbackCustom();
+            operatorPressed(getString(R.string.subtract));
         });
         // Specific buttons of each layout
         if (layout.equals(LayoutMode.EXTENDED)) {
             buttonSqrt.setOnClickListener(v -> {
-                _hapticFeedback();
-                _function(getString(R.string.sqrt));
+                hapticFeedbackCustom();
+                functionPressed(getString(R.string.sqrt));
             });
             buttonPercent.setOnClickListener(v -> {
-                _hapticFeedback();
-                _operator(getString(R.string.percent));
+                hapticFeedbackCustom();
+                operatorPressed(getString(R.string.percent));
             });
             buttonParenthesisL.setOnClickListener(v -> {
-                _hapticFeedback();
-                _operator(getString(R.string.parenthesisL));
+                hapticFeedbackCustom();
+                operatorPressed(getString(R.string.parenthesisL));
             });
             buttonParenthesisR.setOnClickListener(v -> {
-                _hapticFeedback();
-                _operator(getString(R.string.parenthesisR));
+                hapticFeedbackCustom();
+                operatorPressed(getString(R.string.parenthesisR));
             });
             buttonFactorial.setOnClickListener(v -> {
-                _hapticFeedback();
-                _operator(getString(R.string.factorial));
+                hapticFeedbackCustom();
+                operatorPressed(getString(R.string.factorial));
             });
             buttonSin.setOnClickListener(v -> {
-                _hapticFeedback();
-                _function(getString(R.string.sin));
+                hapticFeedbackCustom();
+                functionPressed(getString(R.string.sin));
             });
             buttonCos.setOnClickListener(v -> {
-                _hapticFeedback();
-                _function(getString(R.string.cos));
+                hapticFeedbackCustom();
+                functionPressed(getString(R.string.cos));
             });
             buttonTan.setOnClickListener(v -> {
-                _hapticFeedback();
-                _function(getString(R.string.tan));
+                hapticFeedbackCustom();
+                functionPressed(getString(R.string.tan));
             });
             buttonASin.setOnClickListener(v -> {
-                _hapticFeedback();
-                _function(getString(R.string.asin));
+                hapticFeedbackCustom();
+                functionPressed(getString(R.string.asin));
             });
             buttonACos.setOnClickListener(v -> {
-                _hapticFeedback();
-                _function(getString(R.string.acos));
+                hapticFeedbackCustom();
+                functionPressed(getString(R.string.acos));
             });
             buttonATan.setOnClickListener(v -> {
-                _hapticFeedback();
-                _function(getString(R.string.atan));
+                hapticFeedbackCustom();
+                functionPressed(getString(R.string.atan));
             });
             buttonLn.setOnClickListener(v -> {
-                _hapticFeedback();
-                _function(getString(R.string.ln));
+                hapticFeedbackCustom();
+                functionPressed(getString(R.string.ln));
             });
             buttonLog.setOnClickListener(v -> {
-                _hapticFeedback();
-                _function(getString(R.string.log));
+                hapticFeedbackCustom();
+                functionPressed(getString(R.string.log));
             });
             buttonExp.setOnClickListener(v -> {
-                _hapticFeedback();
-                _exp();
+                hapticFeedbackCustom();
+                expPressed();
             });
             buttonPi.setOnClickListener(v -> {
-                _hapticFeedback();
-                _operator(getString(R.string.pi));
+                hapticFeedbackCustom();
+                operatorPressed(getString(R.string.pi));
             });
             buttonE.setOnClickListener(v -> {
-                _hapticFeedback();
-                _operator(getString(R.string.e));
+                hapticFeedbackCustom();
+                operatorPressed(getString(R.string.e));
             });
             buttonMore.setOnClickListener(v -> {
-                _hapticFeedback();
-                _more(true);
+                hapticFeedbackCustom();
+                morePressed(true);
             });
             buttonLess.setOnClickListener(v -> {
-                _hapticFeedback();
-                _more(false);
+                hapticFeedbackCustom();
+                morePressed(false);
             });
         } else {
             buttonPlusMinus.setOnClickListener(v -> {
-                _hapticFeedback();
-                _plusMinus();
+                hapticFeedbackCustom();
+                plusMinusPressed();
             });
         }
     }
 
-    private void _ans() {
+    private void parseAnswer() {
         if (layout.equals(LayoutMode.EXTENDED)) {
-            _parseAnswerToMain();
+            parseAnswerToMain();
         } else {
-            _parseAnswerToTop();
+            parseAnswerToTop();
             equalPressed = true;
         }
-        _updatePreferences();
+        updatePreferences();
     }
 
-    private void _backSpace() {
-        String _main = editTextMain.getText().toString();
-        int limit = _main.startsWith(getString(R.string.subtract)) ? 2 : 1;
-        if (_main.length() > limit) {
+    private void backSpacePressed() {
+        String mainTxt = editTextMain.getText().toString();
+        int limit = mainTxt.startsWith(getString(R.string.subtract)) ? 2 : 1;
+        if (mainTxt.length() > limit) {
             if (layout.equals(LayoutMode.EXTENDED)) {
-                if (_main.endsWith(getString(R.string.sqrt) + getString(R.string.parenthesisL))) {
-                    editTextMain.setText(_main.substring(0, _main.length() - getString(R.string.sqrt).length() - 1));
-                } else if (_main.endsWith(getString(R.string.sin) + getString(R.string.parenthesisL))) {
-                    editTextMain.setText(_main.substring(0, _main.length() - getString(R.string.sin).length() - 1));
-                } else if (_main.endsWith(getString(R.string.cos) + getString(R.string.parenthesisL))) {
-                    editTextMain.setText(_main.substring(0, _main.length() - getString(R.string.cos).length() - 1));
-                } else if (_main.endsWith(getString(R.string.tan) + getString(R.string.parenthesisL))) {
-                    editTextMain.setText(_main.substring(0, _main.length() - getString(R.string.tan).length() - 1));
-                } else if (_main.endsWith(getString(R.string.asin) + getString(R.string.parenthesisL))) {
-                    editTextMain.setText(_main.substring(0, _main.length() - getString(R.string.asin).length() - 1));
-                } else if (_main.endsWith(getString(R.string.acos) + getString(R.string.parenthesisL))) {
-                    editTextMain.setText(_main.substring(0, _main.length() - getString(R.string.acos).length() - 1));
-                } else if (_main.endsWith(getString(R.string.atan) + getString(R.string.parenthesisL))) {
-                    editTextMain.setText(_main.substring(0, _main.length() - getString(R.string.atan).length() - 1));
-                } else if (_main.endsWith(getString(R.string.ln) + getString(R.string.parenthesisL))) {
-                    editTextMain.setText(_main.substring(0, _main.length() - getString(R.string.ln).length() - 1));
-                } else if (_main.endsWith(getString(R.string.log) + getString(R.string.parenthesisL))) {
-                    editTextMain.setText(_main.substring(0, _main.length() - getString(R.string.log).length() - 1));
+                if (mainTxt.endsWith(getString(R.string.sqrt) + getString(R.string.parenthesisL))) {
+                    editTextMain.setText(mainTxt.substring(0, mainTxt.length() - getString(R.string.sqrt).length() - 1));
+                } else if (mainTxt.endsWith(getString(R.string.sin) + getString(R.string.parenthesisL))) {
+                    editTextMain.setText(mainTxt.substring(0, mainTxt.length() - getString(R.string.sin).length() - 1));
+                } else if (mainTxt.endsWith(getString(R.string.cos) + getString(R.string.parenthesisL))) {
+                    editTextMain.setText(mainTxt.substring(0, mainTxt.length() - getString(R.string.cos).length() - 1));
+                } else if (mainTxt.endsWith(getString(R.string.tan) + getString(R.string.parenthesisL))) {
+                    editTextMain.setText(mainTxt.substring(0, mainTxt.length() - getString(R.string.tan).length() - 1));
+                } else if (mainTxt.endsWith(getString(R.string.asin) + getString(R.string.parenthesisL))) {
+                    editTextMain.setText(mainTxt.substring(0, mainTxt.length() - getString(R.string.asin).length() - 1));
+                } else if (mainTxt.endsWith(getString(R.string.acos) + getString(R.string.parenthesisL))) {
+                    editTextMain.setText(mainTxt.substring(0, mainTxt.length() - getString(R.string.acos).length() - 1));
+                } else if (mainTxt.endsWith(getString(R.string.atan) + getString(R.string.parenthesisL))) {
+                    editTextMain.setText(mainTxt.substring(0, mainTxt.length() - getString(R.string.atan).length() - 1));
+                } else if (mainTxt.endsWith(getString(R.string.ln) + getString(R.string.parenthesisL))) {
+                    editTextMain.setText(mainTxt.substring(0, mainTxt.length() - getString(R.string.ln).length() - 1));
+                } else if (mainTxt.endsWith(getString(R.string.log) + getString(R.string.parenthesisL))) {
+                    editTextMain.setText(mainTxt.substring(0, mainTxt.length() - getString(R.string.log).length() - 1));
                 } else {
-                    editTextMain.setText(_main.substring(0, _main.length() - 1));
+                    editTextMain.setText(mainTxt.substring(0, mainTxt.length() - 1));
                 }
-                if (editTextMain.getText().toString().equals("")) {
+                if (editTextMain.getText().toString().isEmpty()) {
                     editTextMain.setText(getString(R.string.b0));
                 }
             } else {
-                editTextMain.setText(_main.substring(0, _main.length() - 1));
+                editTextMain.setText(mainTxt.substring(0, mainTxt.length() - 1));
             }
-        } else if (_main.length() == limit) {
-            String _top = textViewTop.getText().toString();
-            String _op = textViewOp.getText().toString();
-            if (!_top.equals("") && !_op.equals("")) {
+        } else if (mainTxt.length() == limit) {
+            String topTxt = textViewTop.getText().toString();
+            String opTxt = textViewOp.getText().toString();
+            if (!topTxt.isEmpty() && !opTxt.isEmpty()) {
                 textViewTop.setText("");
                 textViewOp.setText("");
-                editTextMain.setText(_top);
+                editTextMain.setText(topTxt);
             } else {
                 editTextMain.setText(getString(R.string.b0));
                 equalPressed = !textViewTop.getText().toString().isEmpty();
             }
         }
-        _main = editTextMain.getText().toString();
-        if (_main.endsWith(decimal_separator)) {
-            editTextMain.setText(_main.substring(0, _main.length() - 1));
+        mainTxt = editTextMain.getText().toString();
+        if (mainTxt.endsWith(decimalSeparator)) {
+            editTextMain.setText(mainTxt.substring(0, mainTxt.length() - 1));
         }
-        if (_main.endsWith(getString(R.string.exp))) {
-            _backSpace();
+        if (mainTxt.endsWith(getString(R.string.exp))) {
+            backSpacePressed();
         }
-        _updatePreferences();
+        updatePreferences();
     }
 
-    private boolean _backSpaceLong() {
-        String _main = editTextMain.getText().toString();
-        if (_main.equals(getString(R.string.b0))) {
+    private boolean backSpaceLongPressed() {
+        String mainTxt = editTextMain.getText().toString();
+        if (mainTxt.equals(getString(R.string.b0))) {
             return false;
         }
         editTextMain.setText(getString(R.string.b0));
-        _updatePreferences();
+        updatePreferences();
         return true;
     }
 
-    private void _clear() {
+    private void clearPressed() {
         textViewTop.setText("");
         textViewOp.setText("");
         editTextMain.setText(getString(R.string.b0));
         equalPressed = false;
-        _updatePreferences();
+        updatePreferences();
     }
 
-    private void _dot() {
+    private void dotPressed() {
         String s;
-        if (!editTextMain.getText().toString().contains(decimal_separator) || layout.equals(LayoutMode.EXTENDED)) {
-            s = editTextMain.getText().toString() + decimal_separator;
+        if (!editTextMain.getText().toString().contains(decimalSeparator) || layout.equals(LayoutMode.EXTENDED)) {
+            s = editTextMain.getText().toString() + decimalSeparator;
             editTextMain.setText(s);
         }
-        _updatePreferences();
+        updatePreferences();
     }
 
-    private void _equal() {
+    private void equalPressed() {
         try {
             if (layout.equals(LayoutMode.EXTENDED)) {
-                ans = StringEvaluator.evaluate(this, editTextMain.getText().toString(), decimal_separator);
+                ans = StringEvaluator.evaluate(this, editTextMain.getText().toString(), decimalSeparator);
             } else {
                 double d1;
                 double d2;
@@ -498,32 +549,32 @@ public class MainActivity extends AppCompatActivity {
                     ans = d2;
                 }
             }
-            _clear();
-            _parseAnswerToTop();
+            clearPressed();
+            parseAnswerToTop();
             // Enable answer button
             buttonAns.setEnabled(true);
             equalPressed = true;
         } catch (ParseException e) {
-            _clear();
-            _parseAnswerToTop();
+            clearPressed();
+            parseAnswerToTop();
             equalPressed = true;
         } catch (SyntaxException e) {
             equalPressed = false;
             Toast t = Toast.makeText(this, getString(R.string.syntaxError), Toast.LENGTH_LONG);
             t.show();
         }
-        _updatePreferences();
+        updatePreferences();
     }
 
-    private void _parseAnswerToMain() {
+    private void parseAnswerToMain() {
         if (Double.toString(ans).contains("E")) {
-            _number(scientificFormat.format(ans));
+            numberPressed(scientificFormat.format(ans));
         } else {
-            _number(decimalFormat.format(ans));
+            numberPressed(decimalFormat.format(ans));
         }
     }
 
-    private void _parseAnswerToTop() {
+    private void parseAnswerToTop() {
         if (Double.toString(ans).contains("E")) {
             textViewTop.setText(scientificFormat.format(ans));
         } else {
@@ -531,7 +582,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void _number(String s) {
+    private void numberPressed(String s) {
         if (editTextMain.getText().toString().equals(getString(R.string.b0))) {
             editTextMain.setText("");
         }
@@ -541,10 +592,10 @@ public class MainActivity extends AppCompatActivity {
         s = editTextMain.getText().toString() + s;
         editTextMain.setText(s);
         equalPressed = false;
-        _updatePreferences();
+        updatePreferences();
     }
 
-    private void _operator(String s) {
+    private void operatorPressed(String s) {
         if (layout.equals(LayoutMode.EXTENDED)) {
             if (editTextMain.getText().toString().equals(getString(R.string.b0))
                     && !s.equals(getString(R.string.multiply))
@@ -558,26 +609,26 @@ public class MainActivity extends AppCompatActivity {
             editTextMain.setText(s);
         } else {
             if (!equalPressed) {
-                _equal();
+                equalPressed();
             }
             textViewOp.setText(s);
             equalPressed = false;
         }
-        _updatePreferences();
+        updatePreferences();
     }
 
-    private void _plusMinus() {
-        String _main = editTextMain.getText().toString();
-        if (_main.charAt(0) == getString(R.string.subtract).charAt(0)) {
-            editTextMain.setText(_main.replace(getString(R.string.subtract), ""));
+    private void plusMinusPressed() {
+        String mainTxt = editTextMain.getText().toString();
+        if (mainTxt.charAt(0) == getString(R.string.subtract).charAt(0)) {
+            editTextMain.setText(mainTxt.replace(getString(R.string.subtract), ""));
         } else {
-            _main = getString(R.string.subtract) + _main;
-            editTextMain.setText(_main);
+            mainTxt = getString(R.string.subtract) + mainTxt;
+            editTextMain.setText(mainTxt);
         }
-        _updatePreferences();
+        updatePreferences();
     }
 
-    private void _function(String s) {
+    private void functionPressed(String s) {
         if (layout.equals(LayoutMode.EXTENDED)) {
             if (editTextMain.getText().toString().equals(getString(R.string.b0))) {
                 editTextMain.setText("");
@@ -588,29 +639,29 @@ public class MainActivity extends AppCompatActivity {
             s = editTextMain.getText().toString() + s + getString(R.string.parenthesisL);
             editTextMain.setText(s);
         }
-        _updatePreferences();
+        updatePreferences();
     }
 
-    private void _exp() {
-        String _main = editTextMain.getText().toString();
+    private void expPressed() {
+        String mainTxt = editTextMain.getText().toString();
         try {
-            Integer.parseInt(_main.substring(_main.length() - 1));
+            Integer.parseInt(mainTxt.substring(mainTxt.length() - 1));
             buttonMultiply.performClick();
             button1.performClick();
             button0.performClick();
             buttonPow.performClick();
         } catch (NumberFormatException e) {
-           if (_main.endsWith(getString(R.string.e)) || _main.endsWith(getString(R.string.pi))) {
-               buttonMultiply.performClick();
-               button1.performClick();
-               button0.performClick();
-               buttonPow.performClick();
-           }
+            if (mainTxt.endsWith(getString(R.string.e)) || mainTxt.endsWith(getString(R.string.pi))) {
+                buttonMultiply.performClick();
+                button1.performClick();
+                button0.performClick();
+                buttonPow.performClick();
+            }
         }
-        _updatePreferences();
+        updatePreferences();
     }
 
-    private void _more(boolean showMore) {
+    private void morePressed(boolean showMore) {
         int orientation = getResources().getConfiguration().orientation;
 
         buttonMore.setVisibility(showMore ? View.GONE : View.VISIBLE);
@@ -646,7 +697,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void _quit() {
+    private void quitPressed() {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("top", "");
         editor.putString("op", "");
@@ -656,7 +707,7 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
-    private void _updatePreferences() {
+    private void updatePreferences() {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("top", textViewTop.getText().toString());
         editor.putString("op", textViewOp.getText().toString());
@@ -667,7 +718,7 @@ public class MainActivity extends AppCompatActivity {
         editor.apply();
     }
 
-    private void _hapticFeedback() {
+    private void hapticFeedbackCustom() {
         long milliseconds = 10;
         if (Build.VERSION.SDK_INT >= 26) {
             vibrator.vibrate(VibrationEffect.createOneShot(milliseconds, VibrationEffect.DEFAULT_AMPLITUDE));
