@@ -6,10 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.VibrationEffect;
-import android.os.Vibrator;
+import android.view.HapticFeedbackConstants;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -103,8 +101,6 @@ public class MainActivity extends AppCompatActivity {
     private final DecimalFormat decimalFormat = new DecimalFormat("#0.####################");
 
     private final DecimalFormat scientificFormat = new DecimalFormat("0.0#################E0");
-
-    private Vibrator vibrator;
 
     private LayoutMode layout = LayoutMode.BASIC;
 
@@ -253,173 +249,171 @@ public class MainActivity extends AppCompatActivity {
         buttonDot.setText(decimalSeparator);
         // Answer button should be disabled at beginning
         buttonAns.setEnabled(ans != 0D);
-        // Vibrator
-        vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
     }
 
     private void addListeners() {
         button0.setOnClickListener(v -> {
-            hapticFeedbackCustom();
+            hapticFeedbackCustom(button0);
             numberPressed(getString(R.string.b0));
         });
         button1.setOnClickListener(v -> {
-            hapticFeedbackCustom();
+            hapticFeedbackCustom(button1);
             numberPressed(getString(R.string.b1));
         });
         button2.setOnClickListener(v -> {
-            hapticFeedbackCustom();
+            hapticFeedbackCustom(button2);
             numberPressed(getString(R.string.b2));
         });
         button3.setOnClickListener(v -> {
-            hapticFeedbackCustom();
+            hapticFeedbackCustom(button3);
             numberPressed(getString(R.string.b3));
         });
         button4.setOnClickListener(v -> {
-            hapticFeedbackCustom();
+            hapticFeedbackCustom(button4);
             numberPressed(getString(R.string.b4));
         });
         button5.setOnClickListener(v -> {
-            hapticFeedbackCustom();
+            hapticFeedbackCustom(button5);
             numberPressed(getString(R.string.b5));
         });
         button6.setOnClickListener(v -> {
-            hapticFeedbackCustom();
+            hapticFeedbackCustom(button6);
             numberPressed(getString(R.string.b6));
         });
         button7.setOnClickListener(v -> {
-            hapticFeedbackCustom();
+            hapticFeedbackCustom(button7);
             numberPressed(getString(R.string.b7));
         });
         button8.setOnClickListener(v -> {
-            hapticFeedbackCustom();
+            hapticFeedbackCustom(button8);
             numberPressed(getString(R.string.b8));
         });
         button9.setOnClickListener(v -> {
-            hapticFeedbackCustom();
+            hapticFeedbackCustom(button9);
             numberPressed(getString(R.string.b9));
         });
         buttonAns.setOnClickListener(v -> {
-            hapticFeedbackCustom();
+            hapticFeedbackCustom(buttonAns);
             parseAnswer();
         });
         buttonClear.setOnClickListener(v -> {
-            hapticFeedbackCustom();
+            hapticFeedbackCustom(buttonClear);
             clearPressed();
         });
         buttonQuit.setOnClickListener(v -> {
-            hapticFeedbackCustom();
+            hapticFeedbackCustom(buttonQuit);
             quitPressed();
         });
         buttonDot.setOnClickListener(v -> {
-            hapticFeedbackCustom();
+            hapticFeedbackCustom(buttonDot);
             dotPressed();
         });
         buttonEqual.setOnClickListener(v -> {
-            hapticFeedbackCustom();
+            hapticFeedbackCustom(buttonEqual);
             equalPressed();
         });
         buttonAdd.setOnClickListener(v -> {
-            hapticFeedbackCustom();
+            hapticFeedbackCustom(buttonAdd);
             operatorPressed(getString(R.string.add));
         });
         buttonBackspace.setOnClickListener(v -> {
-            hapticFeedbackCustom();
+            hapticFeedbackCustom(buttonBackspace);
             backSpacePressed();
         });
         buttonBackspace.setOnLongClickListener(v -> backSpaceLongPressed());
         buttonDivide.setOnClickListener(v -> {
-            hapticFeedbackCustom();
+            hapticFeedbackCustom(buttonDivide);
             operatorPressed(getString(R.string.divide));
         });
         buttonMultiply.setOnClickListener(v -> {
-            hapticFeedbackCustom();
+            hapticFeedbackCustom(buttonMultiply);
             operatorPressed(getString(R.string.multiply));
         });
         buttonPow.setOnClickListener(v -> {
-            hapticFeedbackCustom();
+            hapticFeedbackCustom(buttonPow);
             operatorPressed("^");
         });
         buttonSubtract.setOnClickListener(v -> {
-            hapticFeedbackCustom();
+            hapticFeedbackCustom(buttonSubtract);
             operatorPressed(getString(R.string.subtract));
         });
         // Specific buttons of each layout
         if (layout.equals(LayoutMode.EXTENDED)) {
             buttonSqrt.setOnClickListener(v -> {
-                hapticFeedbackCustom();
+                hapticFeedbackCustom(buttonSqrt);
                 functionPressed(getString(R.string.sqrt));
             });
             buttonPercent.setOnClickListener(v -> {
-                hapticFeedbackCustom();
+                hapticFeedbackCustom(buttonPercent);
                 operatorPressed(getString(R.string.percent));
             });
             buttonParenthesisL.setOnClickListener(v -> {
-                hapticFeedbackCustom();
+                hapticFeedbackCustom(buttonParenthesisL);
                 operatorPressed(getString(R.string.parenthesisL));
             });
             buttonParenthesisR.setOnClickListener(v -> {
-                hapticFeedbackCustom();
+                hapticFeedbackCustom(buttonParenthesisR);
                 operatorPressed(getString(R.string.parenthesisR));
             });
             buttonFactorial.setOnClickListener(v -> {
-                hapticFeedbackCustom();
+                hapticFeedbackCustom(buttonFactorial);
                 operatorPressed(getString(R.string.factorial));
             });
             buttonSin.setOnClickListener(v -> {
-                hapticFeedbackCustom();
+                hapticFeedbackCustom(buttonSin);
                 functionPressed(getString(R.string.sin));
             });
             buttonCos.setOnClickListener(v -> {
-                hapticFeedbackCustom();
+                hapticFeedbackCustom(buttonCos);
                 functionPressed(getString(R.string.cos));
             });
             buttonTan.setOnClickListener(v -> {
-                hapticFeedbackCustom();
+                hapticFeedbackCustom(buttonTan);
                 functionPressed(getString(R.string.tan));
             });
             buttonASin.setOnClickListener(v -> {
-                hapticFeedbackCustom();
+                hapticFeedbackCustom(buttonASin);
                 functionPressed(getString(R.string.asin));
             });
             buttonACos.setOnClickListener(v -> {
-                hapticFeedbackCustom();
+                hapticFeedbackCustom(buttonACos);
                 functionPressed(getString(R.string.acos));
             });
             buttonATan.setOnClickListener(v -> {
-                hapticFeedbackCustom();
+                hapticFeedbackCustom(buttonATan);
                 functionPressed(getString(R.string.atan));
             });
             buttonLn.setOnClickListener(v -> {
-                hapticFeedbackCustom();
+                hapticFeedbackCustom(buttonLn);
                 functionPressed(getString(R.string.ln));
             });
             buttonLog.setOnClickListener(v -> {
-                hapticFeedbackCustom();
+                hapticFeedbackCustom(buttonLog);
                 functionPressed(getString(R.string.log));
             });
             buttonExp.setOnClickListener(v -> {
-                hapticFeedbackCustom();
+                hapticFeedbackCustom(buttonExp);
                 expPressed();
             });
             buttonPi.setOnClickListener(v -> {
-                hapticFeedbackCustom();
+                hapticFeedbackCustom(buttonPi);
                 operatorPressed(getString(R.string.pi));
             });
             buttonE.setOnClickListener(v -> {
-                hapticFeedbackCustom();
+                hapticFeedbackCustom(buttonE);
                 operatorPressed(getString(R.string.e));
             });
             buttonMore.setOnClickListener(v -> {
-                hapticFeedbackCustom();
+                hapticFeedbackCustom(buttonMore);
                 morePressed(true);
             });
             buttonLess.setOnClickListener(v -> {
-                hapticFeedbackCustom();
+                hapticFeedbackCustom(buttonLess);
                 morePressed(false);
             });
         } else {
             buttonPlusMinus.setOnClickListener(v -> {
-                hapticFeedbackCustom();
+                hapticFeedbackCustom(buttonPlusMinus);
                 plusMinusPressed();
             });
         }
@@ -718,12 +712,13 @@ public class MainActivity extends AppCompatActivity {
         editor.apply();
     }
 
-    private void hapticFeedbackCustom() {
-        long milliseconds = 10;
-        if (Build.VERSION.SDK_INT >= 26) {
-            vibrator.vibrate(VibrationEffect.createOneShot(milliseconds, VibrationEffect.DEFAULT_AMPLITUDE));
-        } else {
-            vibrator.vibrate(milliseconds);
+
+    private void hapticFeedbackCustom(View view) {
+        if (view != null) {
+            if (!view.isHapticFeedbackEnabled()) {
+                view.setHapticFeedbackEnabled(true);
+            }
+            view.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
         }
     }
 }
