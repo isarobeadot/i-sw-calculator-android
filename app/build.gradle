@@ -35,8 +35,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     namespace 'inaki.sw.calculator'
 }
@@ -44,8 +44,8 @@ android {
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'org.mariuszgromada.math:MathParser.org-mXparser:6.0.0'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.2'
+    implementation 'org.mariuszgromada.math:MathParser.org-mXparser:6.1.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.11.3'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
