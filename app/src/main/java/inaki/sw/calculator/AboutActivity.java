@@ -1,5 +1,6 @@
 package inaki.sw.calculator;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -17,7 +18,7 @@ public class AboutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_about);
 
         appVersion = findViewById(R.id.app_version);
-        appVersion.setText(appVersion.getText() + ": " + BuildConfig.VERSION_NAME);
+        appVersion.setText(getString(R.string.app_version, getString(R.string.app_name), BuildConfig.VERSION_NAME));
 
         // Back button
         ActionBar actionBar = getSupportActionBar();
