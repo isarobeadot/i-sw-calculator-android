@@ -61,7 +61,7 @@ dependencies {
 
 sonar {
     properties {
-        property "sonar.projectKey", "isarobeadot_i-sw-calculator-android_b6bd6350-871d-4e5e-a939-3aec8c2b1201"
+        property "sonar.projectKey", "isarobeadot_i-sw-calculator-android_1912a87f-5aa4-41a1-8126-d0b4c6f1d7ce"
         property "sonar.projectName", "i-sw-calculator-android"
     }
 }
