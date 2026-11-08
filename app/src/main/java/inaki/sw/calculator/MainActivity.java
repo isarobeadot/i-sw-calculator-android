@@ -17,8 +17,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -106,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
         initialize();
         addListeners();
@@ -191,6 +196,11 @@ public class MainActivity extends AppCompatActivity {
         } else {
             setContentView(R.layout.activity_main_basic);
         }
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.activity_main), (v, windowInsets) -> {
+            Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(insets.left, 0, insets.right, insets.bottom);
+            return windowInsets;
+        });
         // Buttons
         button0 = findViewById(R.id.b_0);
         button1 = findViewById(R.id.b_1);
